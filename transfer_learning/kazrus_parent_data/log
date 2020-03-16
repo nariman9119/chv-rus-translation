@@ -1,0 +1,56 @@
+[2020-02-29:10:20:15:INFO:__main__:prepare_data] Adjusting maximum length to reserve space for a BOS/EOS marker. New maximum length: (100, 100)
+[2020-02-29:10:20:15:INFO:sockeye.vocab:load_or_create_vocabs] =============================
+[2020-02-29:10:20:15:INFO:sockeye.vocab:load_or_create_vocabs] Loading/creating vocabularies
+[2020-02-29:10:20:15:INFO:sockeye.vocab:load_or_create_vocabs] =============================
+[2020-02-29:10:20:15:INFO:sockeye.vocab:load_or_create_vocabs] (1) Surface form vocabularies (source & target)
+[2020-02-29:10:20:15:INFO:sockeye.vocab:vocab_from_json] Vocabulary (8201 words) loaded from "kazrus_all_data/vocab.src.0.json"
+[2020-02-29:10:20:15:INFO:sockeye.vocab:vocab_from_json] Vocabulary (7893 words) loaded from "kazrus_all_data/vocab.trg.0.json"
+[2020-02-29:10:20:15:INFO:sockeye.data_io:prepare_data] Preparing data.
+[2020-02-29:10:20:15:INFO:sockeye.vocab:vocab_to_json] Vocabulary saved to "/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/vocab.src.0.json"
+[2020-02-29:10:20:15:INFO:sockeye.vocab:vocab_to_json] Vocabulary saved to "/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/vocab.trg.0.json"
+[2020-02-29:10:24:17:INFO:sockeye.data_io:analyze_sequence_lengths] 5015261 sequences of maximum length (100, 100) in 'train.kaz-rus.kaz.bpe' and 'train.kaz-rus.rus.bpe'.
+[2020-02-29:10:24:17:INFO:sockeye.data_io:analyze_sequence_lengths] Mean training target/source length ratio: 1.07 (+-0.29)
+[2020-02-29:10:24:17:INFO:sockeye.data_io:prepare_data] Buckets: [(9, 10), (18, 20), (27, 30), (36, 40), (45, 50), (54, 60), (63, 70), (72, 80), (81, 90), (90, 100), (99, 100), (100, 100)]
+[2020-02-29:10:24:17:INFO:sockeye.data_io:prepare_data] 5015261 samples will be split into 6 shard(s) (requested samples/shard=1000000, min_num_shards=1).
+[2020-02-29:10:30:53:INFO:sockeye.data_io:log] Tokens: source 164138414 target 170894419
+[2020-02-29:10:30:53:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:30:53:INFO:sockeye.data_io:log] 5015261 sequences across 12 buckets
+[2020-02-29:10:30:53:INFO:sockeye.data_io:log] 32391 sequences did not fit into buckets and were discarded
+[2020-02-29:10:31:34:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=14.2% target=19.5%)
+[2020-02-29:10:31:34:INFO:sockeye.data_io:log] Tokens: source 27302622 target 28434350
+[2020-02-29:10:31:34:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:31:34:INFO:sockeye.data_io:log] 834118 sequences across 12 buckets
+[2020-02-29:10:31:34:INFO:sockeye.data_io:log] 5479 sequences did not fit into buckets and were discarded
+[2020-02-29:10:31:34:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/shard.00000'
+[2020-02-29:10:32:14:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=14.2% target=19.5%)
+[2020-02-29:10:32:14:INFO:sockeye.data_io:log] Tokens: source 27445733 target 28580310
+[2020-02-29:10:32:14:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:32:14:INFO:sockeye.data_io:log] 838443 sequences across 12 buckets
+[2020-02-29:10:32:14:INFO:sockeye.data_io:log] 5450 sequences did not fit into buckets and were discarded
+[2020-02-29:10:32:14:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/shard.00001'
+[2020-02-29:10:32:54:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=14.2% target=19.6%)
+[2020-02-29:10:32:54:INFO:sockeye.data_io:log] Tokens: source 27316827 target 28425339
+[2020-02-29:10:32:54:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:32:54:INFO:sockeye.data_io:log] 835280 sequences across 12 buckets
+[2020-02-29:10:32:54:INFO:sockeye.data_io:log] 5397 sequences did not fit into buckets and were discarded
+[2020-02-29:10:32:54:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/shard.00002'
+[2020-02-29:10:33:35:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=14.2% target=19.6%)
+[2020-02-29:10:33:35:INFO:sockeye.data_io:log] Tokens: source 27374190 target 28505827
+[2020-02-29:10:33:35:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:33:35:INFO:sockeye.data_io:log] 836328 sequences across 12 buckets
+[2020-02-29:10:33:35:INFO:sockeye.data_io:log] 5365 sequences did not fit into buckets and were discarded
+[2020-02-29:10:33:35:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/shard.00003'
+[2020-02-29:10:34:15:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=14.2% target=19.5%)
+[2020-02-29:10:34:15:INFO:sockeye.data_io:log] Tokens: source 27355263 target 28487158
+[2020-02-29:10:34:15:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:34:15:INFO:sockeye.data_io:log] 835786 sequences across 12 buckets
+[2020-02-29:10:34:15:INFO:sockeye.data_io:log] 5328 sequences did not fit into buckets and were discarded
+[2020-02-29:10:34:15:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/shard.00004'
+[2020-02-29:10:34:56:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=14.2% target=19.6%)
+[2020-02-29:10:34:56:INFO:sockeye.data_io:log] Tokens: source 27343779 target 28461435
+[2020-02-29:10:34:56:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-02-29:10:34:56:INFO:sockeye.data_io:log] 835306 sequences across 12 buckets
+[2020-02-29:10:34:56:INFO:sockeye.data_io:log] 5372 sequences did not fit into buckets and were discarded
+[2020-02-29:10:34:56:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/shard.00005'
+[2020-02-29:10:34:56:INFO:sockeye.data_io:prepare_data] Writing data info to '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/data.info'
+[2020-02-29:10:34:56:INFO:sockeye.data_io:prepare_data] Writing data config to '/home/nariman9119/sockeye/transfer_learning/kazrus_parent_data/data.config'

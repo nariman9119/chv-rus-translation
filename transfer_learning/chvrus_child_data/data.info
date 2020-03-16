@@ -1,0 +1,9 @@
+!DataInfo
+num_shards: 1
+shared_vocab: false
+source_vocabs:
+- kazrus_all_data/vocab.src.0.json
+sources:
+- /home/nariman9119/sockeye/transfer_learning/train.chv-rus.chv.bpe
+target: /home/nariman9119/sockeye/transfer_learning/train.chv-rus.rus.bpe
+target_vocab: kazrus_all_data/vocab.trg.0.json

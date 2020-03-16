@@ -1,0 +1,28 @@
+[2020-03-02:08:49:43:INFO:__main__:prepare_data] Adjusting maximum length to reserve space for a BOS/EOS marker. New maximum length: (100, 100)
+[2020-03-02:08:49:43:INFO:sockeye.vocab:load_or_create_vocabs] =============================
+[2020-03-02:08:49:43:INFO:sockeye.vocab:load_or_create_vocabs] Loading/creating vocabularies
+[2020-03-02:08:49:43:INFO:sockeye.vocab:load_or_create_vocabs] =============================
+[2020-03-02:08:49:43:INFO:sockeye.vocab:load_or_create_vocabs] (1) Surface form vocabularies (source & target)
+[2020-03-02:08:49:43:INFO:sockeye.vocab:vocab_from_json] Vocabulary (8201 words) loaded from "kazrus_all_data/vocab.src.0.json"
+[2020-03-02:08:49:43:INFO:sockeye.vocab:vocab_from_json] Vocabulary (7893 words) loaded from "kazrus_all_data/vocab.trg.0.json"
+[2020-03-02:08:49:43:INFO:sockeye.data_io:prepare_data] Preparing data.
+[2020-03-02:08:49:43:INFO:sockeye.vocab:vocab_to_json] Vocabulary saved to "/home/nariman9119/sockeye/transfer_learning/chvrus_child_data/vocab.src.0.json"
+[2020-03-02:08:49:43:INFO:sockeye.vocab:vocab_to_json] Vocabulary saved to "/home/nariman9119/sockeye/transfer_learning/chvrus_child_data/vocab.trg.0.json"
+[2020-03-02:08:49:48:WARNING:sockeye.data_io:parallel_iterate] Parallel reading of sequences skipped 1 elements
+[2020-03-02:08:49:48:INFO:sockeye.data_io:analyze_sequence_lengths] 79438 sequences of maximum length (100, 100) in 'train.chv-rus.chv.bpe' and 'train.chv-rus.rus.bpe'.
+[2020-03-02:08:49:48:INFO:sockeye.data_io:analyze_sequence_lengths] Mean training target/source length ratio: 0.76 (+-0.16)
+[2020-03-02:08:49:48:INFO:sockeye.data_io:prepare_data] Buckets: [(10, 8), (20, 16), (30, 24), (40, 32), (50, 40), (60, 48), (70, 56), (80, 64), (90, 72), (100, 80), (100, 88), (100, 96), (100, 100)]
+[2020-03-02:08:49:48:INFO:sockeye.data_io:prepare_data] 79438 samples will be split into 1 shard(s) (requested samples/shard=1000000, min_num_shards=1).
+[2020-03-02:08:49:55:WARNING:sockeye.data_io:parallel_iterate] Parallel reading of sequences skipped 1 elements
+[2020-03-02:08:49:55:INFO:sockeye.data_io:log] Tokens: source 3074268 target 2268130
+[2020-03-02:08:49:55:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-03-02:08:49:55:INFO:sockeye.data_io:log] 79438 sequences across 13 buckets
+[2020-03-02:08:49:55:INFO:sockeye.data_io:log] 7035 sequences did not fit into buckets and were discarded
+[2020-03-02:08:49:59:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=13.1% target=20.0%)
+[2020-03-02:08:49:59:INFO:sockeye.data_io:log] Tokens: source 3074268 target 2268130
+[2020-03-02:08:49:59:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-03-02:08:49:59:INFO:sockeye.data_io:log] 79438 sequences across 13 buckets
+[2020-03-02:08:49:59:INFO:sockeye.data_io:log] 7035 sequences did not fit into buckets and were discarded
+[2020-03-02:08:49:59:INFO:sockeye.data_io:prepare_data] Writing '/home/nariman9119/sockeye/transfer_learning/chvrus_child_data/shard.00000'
+[2020-03-02:08:49:59:INFO:sockeye.data_io:prepare_data] Writing data info to '/home/nariman9119/sockeye/transfer_learning/chvrus_child_data/data.info'
+[2020-03-02:08:49:59:INFO:sockeye.data_io:prepare_data] Writing data config to '/home/nariman9119/sockeye/transfer_learning/chvrus_child_data/data.config'

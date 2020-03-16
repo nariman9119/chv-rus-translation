@@ -1,0 +1,9 @@
+!DataInfo
+num_shards: 1
+shared_vocab: false
+source_vocabs:
+- null
+sources:
+- /home/nariman9119/sockeye/chv.all.train.bpe
+target: /home/nariman9119/sockeye/rus.all.train.bpe
+target_vocab: null
