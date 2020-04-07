@@ -7,6 +7,17 @@ baseline/preprocessing/raw/*
 baseline/preprocessing/tokenized/*
 baseline/preprocessing/vocab/*
 
+backtranslation/chvrus_all_data/shard.*
+backtranslation/chvrus_parent_model/params.*
+backtranslation/chvrus_parent_model/vocab.*
+backtranslation/chvrus_parent_model/training_state/*
+backtranslation/subword-nmt
+backtranslation/preprocessing/bpe/*
+backtranslation/preprocessing/raw/*
+backtranslation/preprocessing/tokenized/*
+backtranslation/preprocessing/vocab/*
+
+
 data/chv-rus/*
 data/kaz-rus/*
 

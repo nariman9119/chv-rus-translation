@@ -1,0 +1,9 @@
+!DataInfo
+num_shards: 1
+shared_vocab: false
+source_vocabs:
+- null
+sources:
+- /content/rus.all.train.bpe
+target: /content/chv.all.train.bpe
+target_vocab: null

@@ -1,0 +1,559 @@
+[2020-04-07:15:36:43:INFO:sockeye.utils:log_sockeye_version] Sockeye version 1.18.106, commit 49e46b25efde2f9b4a753e1cbd47b63b36c73e5f, path /usr/local/lib/python3.6/dist-packages/sockeye/__init__.py
+[2020-04-07:15:36:43:INFO:sockeye.utils:log_mxnet_version] MXNet version 1.5.1, path /usr/local/lib/python3.6/dist-packages/mxnet/__init__.py
+[2020-04-07:15:36:43:INFO:sockeye.utils:log_basic_info] Command: /usr/local/lib/python3.6/dist-packages/sockeye/train.py -d chvrus_all_data -vs rus.all.valid.bpe -vt chv.all.valid.bpe --encoder transformer --decoder transformer --transformer-model-size 512 --transformer-feed-forward-num-hidden 256 --transformer-dropout-prepost 0.1 --num-embed 512 --max-seq-len 100 --decode-and-evaluate 500 -o chvrus_parent_model --num-layers 6 --disable-device-locking --batch-size 1024 --optimized-metric bleu --max-num-checkpoint-not-improved 10
+[2020-04-07:15:36:43:INFO:sockeye.utils:log_basic_info] Arguments: Namespace(allow_missing_params=False, attention_based_copying=False, batch_size=1024, batch_type='word', bucket_width=10, checkpoint_interval=4000, cnn_activation_type='glu', cnn_hidden_dropout=0.2, cnn_kernel_width=(3, 3), cnn_num_hidden=512, cnn_positional_embedding_type='learned', cnn_project_qkv=False, config=None, conv_embed_add_positional_encodings=False, conv_embed_dropout=0.0, conv_embed_max_filter_width=8, conv_embed_num_filters=(200, 200, 250, 250, 300, 300, 300, 300), conv_embed_num_highway_layers=4, conv_embed_output_dim=None, conv_embed_pool_stride=5, decode_and_evaluate=500, decode_and_evaluate_device_id=None, decode_and_evaluate_use_cpu=False, decoder='transformer', decoder_only=False, device_ids=[-1], disable_device_locking=True, dry_run=False, embed_dropout=(0.0, 0.0), embed_weight_init='default', encoder='transformer', fixed_param_names=[], fixed_param_strategy=None, gradient_clipping_threshold=1.0, gradient_clipping_type='none', gradient_compression_threshold=0.5, gradient_compression_type=None, initial_learning_rate=0.0002, keep_initializations=False, keep_last_params=-1, kvstore='device', label_smoothing=0.1, layer_normalization=False, learning_rate_decay_optimizer_states_reset='off', learning_rate_decay_param_reset=False, learning_rate_half_life=10, learning_rate_reduce_factor=0.7, learning_rate_reduce_num_not_improved=8, learning_rate_schedule=None, learning_rate_scheduler_type='plateau-reduce', learning_rate_warmup=0, length_task=None, length_task_layers=1, length_task_weight=1.0, lhuc=None, lock_dir='/tmp', loglevel='INFO', loss='cross-entropy', loss_normalization_type='valid', max_checkpoints=None, max_num_checkpoint_not_improved=10, max_num_epochs=None, max_samples=None, max_seconds=None, max_seq_len=(100, 100), max_updates=None, metrics=['perplexity'], min_num_epochs=None, min_samples=None, min_updates=None, momentum=None, monitor_pattern=None, monitor_stat_func='mx_default', no_bucketing=False, num_embed=(512, 512), num_layers=(6, 6), num_words=(0, 0), optimized_metric='bleu', optimizer='adam', optimizer_params=None, output='chvrus_parent_model', overwrite_output=False, pad_vocab_to_multiple_of=None, params=None, prepared_data='chvrus_all_data', quiet=False, rnn_attention_coverage_max_fertility=2, rnn_attention_coverage_num_hidden=1, rnn_attention_coverage_type='count', rnn_attention_in_upper_layers=False, rnn_attention_mhdot_heads=None, rnn_attention_num_hidden=None, rnn_attention_type='mlp', rnn_attention_use_prev_word=False, rnn_cell_type='lstm', rnn_context_gating=False, rnn_decoder_hidden_dropout=0.2, rnn_decoder_state_init='last', rnn_dropout_inputs=(0.0, 0.0), rnn_dropout_recurrent=(0.0, 0.0), rnn_dropout_states=(0.0, 0.0), rnn_enc_last_hidden_concat_to_embedding=False, rnn_encoder_reverse_input=False, rnn_first_residual_layer=2, rnn_forget_bias=0.0, rnn_h2h_init='orthogonal', rnn_num_hidden=1024, rnn_residual_connections=False, rnn_scale_dot_attention=False, seed=13, shared_vocab=False, source=None, source_factor_vocabs=[], source_factors=[], source_factors_combine='concat', source_factors_num_embed=[], source_vocab=None, stop_training_on_decoder_failure=False, target=None, target_vocab=None, transformer_activation_type='relu', transformer_attention_heads=(8, 8), transformer_dropout_act=0.1, transformer_dropout_attention=0.1, transformer_dropout_prepost=0.1, transformer_feed_forward_num_hidden=(256, 256), transformer_model_size=(512, 512), transformer_positional_embedding_type='fixed', transformer_postprocess=('dr', 'dr'), transformer_preprocess=('n', 'n'), update_interval=1, use_cpu=False, validation_source='rus.all.valid.bpe', validation_source_factors=[], validation_target='chv.all.valid.bpe', weight_decay=0.0, weight_init='xavier', weight_init_scale=3.0, weight_init_xavier_factor_type='avg', weight_init_xavier_rand_type='uniform', weight_normalization=False, weight_tying=False, weight_tying_type='trg_softmax', word_min_count=(1, 1))
+[2020-04-07:15:36:43:INFO:__main__:train] Adjusting maximum length to reserve space for a BOS/EOS marker. New maximum length: (101, 101)
+[2020-04-07:15:36:43:INFO:sockeye.utils:_expand_requested_device_ids] Attempting to acquire 1 GPUs of 1 GPUs.
+[2020-04-07:15:36:43:INFO:__main__:train] Training Device(s): gpu(0)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:get_prepared_data_iters] ===============================
+[2020-04-07:15:36:43:INFO:sockeye.data_io:get_prepared_data_iters] Creating training data iterator
+[2020-04-07:15:36:43:INFO:sockeye.data_io:get_prepared_data_iters] ===============================
+[2020-04-07:15:36:43:INFO:sockeye.vocab:vocab_from_json] Vocabulary (5719 words) loaded from "chvrus_all_data/vocab.src.0.json"
+[2020-04-07:15:36:43:INFO:sockeye.vocab:vocab_from_json] Vocabulary (5615 words) loaded from "chvrus_all_data/vocab.trg.0.json"
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] Tokens: source 2227070 target 2122719
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] 84672 sequences across 10 buckets
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] 1801 sequences did not fit into buckets and were discarded
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (10, 10): 11901 samples in 87 batches of 138, ~1025.5 tokens/batch, trg/src length ratio: 1.03 (+-0.23)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (20, 20): 24601 samples in 337 batches of 73, ~1030.2 tokens/batch, trg/src length ratio: 1.00 (+-0.22)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (30, 30): 19862 samples in 442 batches of 45, ~1035.0 tokens/batch, trg/src length ratio: 0.97 (+-0.19)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (40, 40): 11908 samples in 373 batches of 32, ~1021.5 tokens/batch, trg/src length ratio: 0.96 (+-0.17)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (50, 50): 7200 samples in 288 batches of 25, ~1024.6 tokens/batch, trg/src length ratio: 0.95 (+-0.16)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (60, 60): 3956 samples in 189 batches of 21, ~1047.5 tokens/batch, trg/src length ratio: 0.94 (+-0.15)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (70, 70): 2362 samples in 139 batches of 17, ~1011.7 tokens/batch, trg/src length ratio: 0.95 (+-0.14)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (80, 80): 1408 samples in 94 batches of 15, ~1024.8 tokens/batch, trg/src length ratio: 0.94 (+-0.13)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (90, 90): 846 samples in 66 batches of 13, ~1015.9 tokens/batch, trg/src length ratio: 0.94 (+-0.12)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (100, 100): 628 samples in 42 batches of 15, ~1310.8 tokens/batch, trg/src length ratio: 0.94 (+-0.11)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:_load_shard] Loading shard chvrus_all_data/shard.00000.
+[2020-04-07:15:36:43:INFO:sockeye.data_io:get_validation_data_iter] =================================
+[2020-04-07:15:36:43:INFO:sockeye.data_io:get_validation_data_iter] Creating validation data iterator
+[2020-04-07:15:36:43:INFO:sockeye.data_io:get_validation_data_iter] =================================
+[2020-04-07:15:36:43:INFO:sockeye.data_io:analyze_sequence_lengths] 2815 sequences of maximum length (100, 100) in '/content/rus.all.valid.bpe' and '/content/chv.all.valid.bpe'.
+[2020-04-07:15:36:43:INFO:sockeye.data_io:analyze_sequence_lengths] Mean training target/source length ratio: 0.98 (+-0.20)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] Tokens: source 74394 target 70912
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] Vocabulary coverage: source 100% target 100%
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] 2815 sequences across 10 buckets
+[2020-04-07:15:36:43:INFO:sockeye.data_io:log] 67 sequences did not fit into buckets and were discarded
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (10, 10): 401 samples in 3 batches of 138, ~1025.5 tokens/batch, trg/src length ratio: 1.05 (+-0.22)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (20, 20): 798 samples in 11 batches of 73, ~1030.2 tokens/batch, trg/src length ratio: 1.00 (+-0.22)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (30, 30): 651 samples in 15 batches of 45, ~1035.0 tokens/batch, trg/src length ratio: 0.98 (+-0.19)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (40, 40): 422 samples in 14 batches of 32, ~1021.5 tokens/batch, trg/src length ratio: 0.95 (+-0.19)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (50, 50): 231 samples in 10 batches of 25, ~1024.6 tokens/batch, trg/src length ratio: 0.94 (+-0.15)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (60, 60): 148 samples in 8 batches of 21, ~1047.5 tokens/batch, trg/src length ratio: 0.94 (+-0.14)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (70, 70): 74 samples in 5 batches of 17, ~1011.7 tokens/batch, trg/src length ratio: 0.95 (+-0.14)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (80, 80): 43 samples in 3 batches of 15, ~1024.8 tokens/batch, trg/src length ratio: 0.94 (+-0.13)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (90, 90): 34 samples in 3 batches of 13, ~1015.9 tokens/batch, trg/src length ratio: 0.94 (+-0.08)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:describe_data_and_buckets] Bucket (100, 100): 13 samples in 1 batches of 15, ~1310.8 tokens/batch, trg/src length ratio: 0.93 (+-0.09)
+[2020-04-07:15:36:43:INFO:sockeye.data_io:load] Created bucketed parallel data set. Introduced padding: source=17.1% target=21.0%)
+[2020-04-07:15:36:43:INFO:sockeye.vocab:vocab_to_json] Vocabulary saved to "/content/chvrus_parent_model/vocab.src.0.json"
+[2020-04-07:15:36:43:INFO:sockeye.vocab:vocab_to_json] Vocabulary saved to "/content/chvrus_parent_model/vocab.trg.0.json"
+[2020-04-07:15:36:43:INFO:__main__:train] Vocabulary sizes: source=[5719] target=5615
+[2020-04-07:15:36:43:INFO:sockeye.model:__init__] Config[_frozen=True, config_data=Config[_frozen=True, data_statistics=Config[_frozen=True, average_len_target_per_bucket=[7.430888160658767, 14.112190561359242, 22.999395831235642, 31.923076923076813, 40.98375000000006, 49.87917087967635, 59.51016088060971, 68.32102272727263, 78.14893617021278, 87.38535031847138], buckets=[(10, 10), (20, 20), (30, 30), (40, 40), (50, 50), (60, 60), (70, 70), (80, 80), (90, 90), (100, 100)], length_ratio_mean=0.9838626542479857, length_ratio_stats_per_bucket=[(1.034753515444218, 0.2290403304596612), (1.0045115976076442, 0.22122902093496666), (0.9747353280981116, 0.19389333855774074), (0.9584309513923783, 0.1747409594064686), (0.9503603393794916, 0.1610609319154113), (0.9409714717263704, 0.14984150265571436), (0.9459844697294327, 0.14168628212609405), (0.9385395904693116, 0.13454010199012928), (0.941464124625473, 0.11770129702526581), (0.9369476251215103, 0.11040670519774226)], length_ratio_std=0.19984822846917394, max_observed_len_source=100, max_observed_len_target=100, num_discarded=1801, num_sents=84672, num_sents_per_bucket=[11901, 24601, 19862, 11908, 7200, 3956, 2362, 1408, 846, 628], num_tokens_source=2227070, num_tokens_target=2122719, num_unks_source=0, num_unks_target=0, size_vocab_source=5719, size_vocab_target=5615], max_seq_len_source=100, max_seq_len_target=100, num_source_factors=1, source_with_eos=True], config_decoder=Config[_frozen=True, act_type=relu, attention_heads=8, conv_config=None, dropout_act=0.1, dropout_attention=0.1, dropout_prepost=0.1, dtype=float32, feed_forward_num_hidden=256, lhuc=False, max_seq_len_source=100, max_seq_len_target=100, model_size=512, num_layers=6, positional_embedding_type=fixed, postprocess_sequence=dr, preprocess_sequence=n, use_lhuc=False], config_embed_source=Config[_frozen=True, dropout=0.0, dtype=float32, factor_configs=None, num_embed=512, num_factors=1, source_factors_combine=concat, vocab_size=5719], config_embed_target=Config[_frozen=True, dropout=0.0, dtype=float32, factor_configs=None, num_embed=512, num_factors=1, source_factors_combine=concat, vocab_size=5615], config_encoder=Config[_frozen=True, act_type=relu, attention_heads=8, conv_config=None, dropout_act=0.1, dropout_attention=0.1, dropout_prepost=0.1, dtype=float32, feed_forward_num_hidden=256, lhuc=False, max_seq_len_source=100, max_seq_len_target=100, model_size=512, num_layers=6, positional_embedding_type=fixed, postprocess_sequence=dr, preprocess_sequence=n, use_lhuc=False], config_length_task=None, config_length_task_loss=None, config_loss=Config[_frozen=True, label_smoothing=0.1, length_task_link=None, length_task_weight=1.0, name=cross-entropy, normalization_type=valid, vocab_size=5615], lhuc=False, num_pointers=0, vocab_source_size=5719, vocab_target_size=5615, weight_normalization=False, weight_tying=False, weight_tying_type=None]
+[2020-04-07:15:36:43:INFO:sockeye.encoder:__init__] sockeye.encoder.EncoderSequence dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.encoder:__init__] sockeye.encoder.AddSinCosPositionalEmbeddings dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.encoder:__init__] sockeye.encoder.TransformerEncoder dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.decoder:__init__] sockeye.decoder.TransformerDecoder dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.encoder:__init__] sockeye.encoder.AddSinCosPositionalEmbeddings dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.encoder:__init__] sockeye.encoder.Embedding dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.encoder:__init__] sockeye.encoder.Embedding dtype: float32
+[2020-04-07:15:36:43:INFO:sockeye.loss:__init__] Loss: CrossEntropy(normalization_type=valid, label_smoothing=0.1)
+[2020-04-07:15:36:43:INFO:sockeye.training:_initialize] Using model loss: cross-entropy
+[2020-04-07:15:36:43:INFO:sockeye.training:_initialize] Using bucketing. Default max_seq_len=(100, 100)
+[2020-04-07:15:36:49:INFO:sockeye.model:save_config] Saved config to "/content/chvrus_parent_model/config"
+[2020-04-07:15:36:49:INFO:sockeye.lr_scheduler:__init__] Will reduce the learning rate by a factor of 0.70 whenever the validation score doesn't improve 8 times.
+[2020-04-07:15:36:49:INFO:__main__:create_optimizer_config] Optimizer: Config[_frozen=False, gradient_clipping_threshold=1.0, gradient_clipping_type=none, initializer=<mxnet.initializer.Mixed object at 0x7fa13553eb00>, kvstore=device, name=adam, params={'wd': 0.0, 'learning_rate': 0.0002, 'rescale_grad': 1.0, 'lr_scheduler': LearningRateSchedulerPlateauReduce(reduce_factor=0.70, reduce_num_not_improved=0)}, update_interval=1]
+[2020-04-07:15:36:49:INFO:__main__:create_optimizer_config] Gradient Compression: None
+[2020-04-07:15:36:49:INFO:sockeye.training:__init__] mxboard not found. Consider 'pip install mxboard' to log events to Tensorboard.
+[2020-04-07:15:36:49:INFO:sockeye.checkpoint_decoder:__init__] Created CheckpointDecoder(max_input_len=-1, beam_size=5, model=chvrus_parent_model, num_sentences=500, context=gpu(0))
+[2020-04-07:15:36:49:INFO:sockeye.training:fit] Early stopping by optimizing 'bleu'
+[2020-04-07:15:36:49:INFO:sockeye.training:log_parameters] Model parameters: decoder_transformer_0_att_enc_h2o_weight: (512, 512), decoder_transformer_0_att_enc_k2h_weight: (512, 512), decoder_transformer_0_att_enc_pre_norm_beta: (512,), decoder_transformer_0_att_enc_pre_norm_gamma: (512,), decoder_transformer_0_att_enc_q2h_weight: (512, 512), decoder_transformer_0_att_enc_v2h_weight: (512, 512), decoder_transformer_0_att_self_h2o_weight: (512, 512), decoder_transformer_0_att_self_i2h_weight: (1536, 512), decoder_transformer_0_att_self_pre_norm_beta: (512,), decoder_transformer_0_att_self_pre_norm_gamma: (512,), decoder_transformer_0_ff_h2o_bias: (512,), decoder_transformer_0_ff_h2o_weight: (512, 256), decoder_transformer_0_ff_i2h_bias: (256,), decoder_transformer_0_ff_i2h_weight: (256, 512), decoder_transformer_0_ff_pre_norm_beta: (512,), decoder_transformer_0_ff_pre_norm_gamma: (512,), decoder_transformer_1_att_enc_h2o_weight: (512, 512), decoder_transformer_1_att_enc_k2h_weight: (512, 512), decoder_transformer_1_att_enc_pre_norm_beta: (512,), decoder_transformer_1_att_enc_pre_norm_gamma: (512,), decoder_transformer_1_att_enc_q2h_weight: (512, 512), decoder_transformer_1_att_enc_v2h_weight: (512, 512), decoder_transformer_1_att_self_h2o_weight: (512, 512), decoder_transformer_1_att_self_i2h_weight: (1536, 512), decoder_transformer_1_att_self_pre_norm_beta: (512,), decoder_transformer_1_att_self_pre_norm_gamma: (512,), decoder_transformer_1_ff_h2o_bias: (512,), decoder_transformer_1_ff_h2o_weight: (512, 256), decoder_transformer_1_ff_i2h_bias: (256,), decoder_transformer_1_ff_i2h_weight: (256, 512), decoder_transformer_1_ff_pre_norm_beta: (512,), decoder_transformer_1_ff_pre_norm_gamma: (512,), decoder_transformer_2_att_enc_h2o_weight: (512, 512), decoder_transformer_2_att_enc_k2h_weight: (512, 512), decoder_transformer_2_att_enc_pre_norm_beta: (512,), decoder_transformer_2_att_enc_pre_norm_gamma: (512,), decoder_transformer_2_att_enc_q2h_weight: (512, 512), decoder_transformer_2_att_enc_v2h_weight: (512, 512), decoder_transformer_2_att_self_h2o_weight: (512, 512), decoder_transformer_2_att_self_i2h_weight: (1536, 512), decoder_transformer_2_att_self_pre_norm_beta: (512,), decoder_transformer_2_att_self_pre_norm_gamma: (512,), decoder_transformer_2_ff_h2o_bias: (512,), decoder_transformer_2_ff_h2o_weight: (512, 256), decoder_transformer_2_ff_i2h_bias: (256,), decoder_transformer_2_ff_i2h_weight: (256, 512), decoder_transformer_2_ff_pre_norm_beta: (512,), decoder_transformer_2_ff_pre_norm_gamma: (512,), decoder_transformer_3_att_enc_h2o_weight: (512, 512), decoder_transformer_3_att_enc_k2h_weight: (512, 512), decoder_transformer_3_att_enc_pre_norm_beta: (512,), decoder_transformer_3_att_enc_pre_norm_gamma: (512,), decoder_transformer_3_att_enc_q2h_weight: (512, 512), decoder_transformer_3_att_enc_v2h_weight: (512, 512), decoder_transformer_3_att_self_h2o_weight: (512, 512), decoder_transformer_3_att_self_i2h_weight: (1536, 512), decoder_transformer_3_att_self_pre_norm_beta: (512,), decoder_transformer_3_att_self_pre_norm_gamma: (512,), decoder_transformer_3_ff_h2o_bias: (512,), decoder_transformer_3_ff_h2o_weight: (512, 256), decoder_transformer_3_ff_i2h_bias: (256,), decoder_transformer_3_ff_i2h_weight: (256, 512), decoder_transformer_3_ff_pre_norm_beta: (512,), decoder_transformer_3_ff_pre_norm_gamma: (512,), decoder_transformer_4_att_enc_h2o_weight: (512, 512), decoder_transformer_4_att_enc_k2h_weight: (512, 512), decoder_transformer_4_att_enc_pre_norm_beta: (512,), decoder_transformer_4_att_enc_pre_norm_gamma: (512,), decoder_transformer_4_att_enc_q2h_weight: (512, 512), decoder_transformer_4_att_enc_v2h_weight: (512, 512), decoder_transformer_4_att_self_h2o_weight: (512, 512), decoder_transformer_4_att_self_i2h_weight: (1536, 512), decoder_transformer_4_att_self_pre_norm_beta: (512,), decoder_transformer_4_att_self_pre_norm_gamma: (512,), decoder_transformer_4_ff_h2o_bias: (512,), decoder_transformer_4_ff_h2o_weight: (512, 256), decoder_transformer_4_ff_i2h_bias: (256,), decoder_transformer_4_ff_i2h_weight: (256, 512), decoder_transformer_4_ff_pre_norm_beta: (512,), decoder_transformer_4_ff_pre_norm_gamma: (512,), decoder_transformer_5_att_enc_h2o_weight: (512, 512), decoder_transformer_5_att_enc_k2h_weight: (512, 512), decoder_transformer_5_att_enc_pre_norm_beta: (512,), decoder_transformer_5_att_enc_pre_norm_gamma: (512,), decoder_transformer_5_att_enc_q2h_weight: (512, 512), decoder_transformer_5_att_enc_v2h_weight: (512, 512), decoder_transformer_5_att_self_h2o_weight: (512, 512), decoder_transformer_5_att_self_i2h_weight: (1536, 512), decoder_transformer_5_att_self_pre_norm_beta: (512,), decoder_transformer_5_att_self_pre_norm_gamma: (512,), decoder_transformer_5_ff_h2o_bias: (512,), decoder_transformer_5_ff_h2o_weight: (512, 256), decoder_transformer_5_ff_i2h_bias: (256,), decoder_transformer_5_ff_i2h_weight: (256, 512), decoder_transformer_5_ff_pre_norm_beta: (512,), decoder_transformer_5_ff_pre_norm_gamma: (512,), decoder_transformer_final_process_norm_beta: (512,), decoder_transformer_final_process_norm_gamma: (512,), encoder_transformer_0_att_self_h2o_weight: (512, 512), encoder_transformer_0_att_self_i2h_weight: (1536, 512), encoder_transformer_0_att_self_pre_norm_beta: (512,), encoder_transformer_0_att_self_pre_norm_gamma: (512,), encoder_transformer_0_ff_h2o_bias: (512,), encoder_transformer_0_ff_h2o_weight: (512, 256), encoder_transformer_0_ff_i2h_bias: (256,), encoder_transformer_0_ff_i2h_weight: (256, 512), encoder_transformer_0_ff_pre_norm_beta: (512,), encoder_transformer_0_ff_pre_norm_gamma: (512,), encoder_transformer_1_att_self_h2o_weight: (512, 512), encoder_transformer_1_att_self_i2h_weight: (1536, 512), encoder_transformer_1_att_self_pre_norm_beta: (512,), encoder_transformer_1_att_self_pre_norm_gamma: (512,), encoder_transformer_1_ff_h2o_bias: (512,), encoder_transformer_1_ff_h2o_weight: (512, 256), encoder_transformer_1_ff_i2h_bias: (256,), encoder_transformer_1_ff_i2h_weight: (256, 512), encoder_transformer_1_ff_pre_norm_beta: (512,), encoder_transformer_1_ff_pre_norm_gamma: (512,), encoder_transformer_2_att_self_h2o_weight: (512, 512), encoder_transformer_2_att_self_i2h_weight: (1536, 512), encoder_transformer_2_att_self_pre_norm_beta: (512,), encoder_transformer_2_att_self_pre_norm_gamma: (512,), encoder_transformer_2_ff_h2o_bias: (512,), encoder_transformer_2_ff_h2o_weight: (512, 256), encoder_transformer_2_ff_i2h_bias: (256,), encoder_transformer_2_ff_i2h_weight: (256, 512), encoder_transformer_2_ff_pre_norm_beta: (512,), encoder_transformer_2_ff_pre_norm_gamma: (512,), encoder_transformer_3_att_self_h2o_weight: (512, 512), encoder_transformer_3_att_self_i2h_weight: (1536, 512), encoder_transformer_3_att_self_pre_norm_beta: (512,), encoder_transformer_3_att_self_pre_norm_gamma: (512,), encoder_transformer_3_ff_h2o_bias: (512,), encoder_transformer_3_ff_h2o_weight: (512, 256), encoder_transformer_3_ff_i2h_bias: (256,), encoder_transformer_3_ff_i2h_weight: (256, 512), encoder_transformer_3_ff_pre_norm_beta: (512,), encoder_transformer_3_ff_pre_norm_gamma: (512,), encoder_transformer_4_att_self_h2o_weight: (512, 512), encoder_transformer_4_att_self_i2h_weight: (1536, 512), encoder_transformer_4_att_self_pre_norm_beta: (512,), encoder_transformer_4_att_self_pre_norm_gamma: (512,), encoder_transformer_4_ff_h2o_bias: (512,), encoder_transformer_4_ff_h2o_weight: (512, 256), encoder_transformer_4_ff_i2h_bias: (256,), encoder_transformer_4_ff_i2h_weight: (256, 512), encoder_transformer_4_ff_pre_norm_beta: (512,), encoder_transformer_4_ff_pre_norm_gamma: (512,), encoder_transformer_5_att_self_h2o_weight: (512, 512), encoder_transformer_5_att_self_i2h_weight: (1536, 512), encoder_transformer_5_att_self_pre_norm_beta: (512,), encoder_transformer_5_att_self_pre_norm_gamma: (512,), encoder_transformer_5_ff_h2o_bias: (512,), encoder_transformer_5_ff_h2o_weight: (512, 256), encoder_transformer_5_ff_i2h_bias: (256,), encoder_transformer_5_ff_i2h_weight: (256, 512), encoder_transformer_5_ff_pre_norm_beta: (512,), encoder_transformer_5_ff_pre_norm_gamma: (512,), encoder_transformer_final_process_norm_beta: (512,), encoder_transformer_final_process_norm_gamma: (512,), source_embed_weight: (5719, 512), target_embed_weight: (5615, 512), target_output_bias: (5615,), target_output_weight: (5615, 512)
+[2020-04-07:15:36:49:INFO:sockeye.training:log_parameters] Fixed model parameters: 
+[2020-04-07:15:36:49:INFO:sockeye.training:log_parameters] Fixing 0 parameters (0.00%)
+[2020-04-07:15:36:49:INFO:sockeye.training:log_parameters] Learning 30745583 parameters (100.00%)
+[2020-04-07:15:36:49:INFO:sockeye.training:log_parameters] Total # of parameters: 30745583
+[2020-04-07:15:36:50:INFO:root:save_params_to_file] Saved params to "/content/chvrus_parent_model/params.00000"
+[2020-04-07:15:36:50:INFO:sockeye.training:fit] Training started.
+[2020-04-07:15:36:57:INFO:sockeye.training:__call__] Epoch[0] Batch [50]	Speed: 299.73 samples/sec 10207.80 tokens/sec 7.90 updates/sec	perplexity=1865.005659
+[2020-04-07:15:37:03:INFO:sockeye.training:__call__] Epoch[0] Batch [100]	Speed: 346.05 samples/sec 10528.54 tokens/sec 8.00 updates/sec	perplexity=1543.936866
+[2020-04-07:15:37:09:INFO:sockeye.training:__call__] Epoch[0] Batch [150]	Speed: 336.40 samples/sec 10482.17 tokens/sec 7.96 updates/sec	perplexity=1411.126989
+[2020-04-07:15:37:15:INFO:sockeye.training:__call__] Epoch[0] Batch [200]	Speed: 293.47 samples/sec 10474.45 tokens/sec 8.12 updates/sec	perplexity=1313.875214
+[2020-04-07:15:37:22:INFO:sockeye.training:__call__] Epoch[0] Batch [250]	Speed: 335.64 samples/sec 10537.41 tokens/sec 7.99 updates/sec	perplexity=1205.186609
+[2020-04-07:15:37:28:INFO:sockeye.training:__call__] Epoch[0] Batch [300]	Speed: 263.79 samples/sec 10556.39 tokens/sec 8.23 updates/sec	perplexity=1137.216854
+[2020-04-07:15:37:34:INFO:sockeye.training:__call__] Epoch[0] Batch [350]	Speed: 280.35 samples/sec 10582.22 tokens/sec 8.14 updates/sec	perplexity=1066.526140
+[2020-04-07:15:37:40:INFO:sockeye.training:__call__] Epoch[0] Batch [400]	Speed: 333.99 samples/sec 10539.98 tokens/sec 7.88 updates/sec	perplexity=989.243528
+[2020-04-07:15:37:47:INFO:sockeye.training:__call__] Epoch[0] Batch [450]	Speed: 374.65 samples/sec 10493.50 tokens/sec 7.79 updates/sec	perplexity=914.675791
+[2020-04-07:15:37:53:INFO:sockeye.training:__call__] Epoch[0] Batch [500]	Speed: 324.31 samples/sec 10573.64 tokens/sec 8.07 updates/sec	perplexity=858.072631
+[2020-04-07:15:37:59:INFO:sockeye.training:__call__] Epoch[0] Batch [550]	Speed: 315.10 samples/sec 10589.20 tokens/sec 8.10 updates/sec	perplexity=809.687860
+[2020-04-07:15:38:05:INFO:sockeye.training:__call__] Epoch[0] Batch [600]	Speed: 309.49 samples/sec 10507.33 tokens/sec 7.98 updates/sec	perplexity=766.452543
+[2020-04-07:15:38:11:INFO:sockeye.training:__call__] Epoch[0] Batch [650]	Speed: 336.38 samples/sec 10552.50 tokens/sec 8.06 updates/sec	perplexity=728.433290
+[2020-04-07:15:38:18:INFO:sockeye.training:__call__] Epoch[0] Batch [700]	Speed: 350.98 samples/sec 10495.78 tokens/sec 8.01 updates/sec	perplexity=691.714226
+[2020-04-07:15:38:24:INFO:sockeye.training:__call__] Epoch[0] Batch [750]	Speed: 320.69 samples/sec 10527.02 tokens/sec 7.98 updates/sec	perplexity=662.709230
+[2020-04-07:15:38:30:INFO:sockeye.training:__call__] Epoch[0] Batch [800]	Speed: 344.05 samples/sec 10483.48 tokens/sec 7.94 updates/sec	perplexity=633.762153
+[2020-04-07:15:38:36:INFO:sockeye.training:__call__] Epoch[0] Batch [850]	Speed: 340.58 samples/sec 10506.36 tokens/sec 8.12 updates/sec	perplexity=606.580609
+[2020-04-07:15:38:43:INFO:sockeye.training:__call__] Epoch[0] Batch [900]	Speed: 336.94 samples/sec 10549.57 tokens/sec 8.03 updates/sec	perplexity=581.727522
+[2020-04-07:15:38:49:INFO:sockeye.training:__call__] Epoch[0] Batch [950]	Speed: 340.41 samples/sec 10552.61 tokens/sec 7.91 updates/sec	perplexity=560.163884
+[2020-04-07:15:38:55:INFO:sockeye.training:__call__] Epoch[0] Batch [1000]	Speed: 324.25 samples/sec 10559.75 tokens/sec 8.05 updates/sec	perplexity=539.930971
+[2020-04-07:15:39:01:INFO:sockeye.training:__call__] Epoch[0] Batch [1050]	Speed: 354.82 samples/sec 10462.21 tokens/sec 8.00 updates/sec	perplexity=520.296484
+[2020-04-07:15:39:08:INFO:sockeye.training:__call__] Epoch[0] Batch [1100]	Speed: 320.96 samples/sec 10545.52 tokens/sec 8.00 updates/sec	perplexity=502.994440
+[2020-04-07:15:39:14:INFO:sockeye.training:__call__] Epoch[0] Batch [1150]	Speed: 343.72 samples/sec 10567.06 tokens/sec 7.98 updates/sec	perplexity=486.396275
+[2020-04-07:15:39:20:INFO:sockeye.training:__call__] Epoch[0] Batch [1200]	Speed: 339.65 samples/sec 10471.69 tokens/sec 7.97 updates/sec	perplexity=470.460612
+[2020-04-07:15:39:26:INFO:sockeye.training:__call__] Epoch[0] Batch [1250]	Speed: 351.33 samples/sec 10502.89 tokens/sec 8.05 updates/sec	perplexity=455.207237
+[2020-04-07:15:39:32:INFO:sockeye.training:__call__] Epoch[0] Batch [1300]	Speed: 249.46 samples/sec 10433.44 tokens/sec 8.18 updates/sec	perplexity=443.007983
+[2020-04-07:15:39:39:INFO:sockeye.training:__call__] Epoch[0] Batch [1350]	Speed: 352.44 samples/sec 10525.80 tokens/sec 7.92 updates/sec	perplexity=429.099719
+[2020-04-07:15:39:45:INFO:sockeye.training:__call__] Epoch[0] Batch [1400]	Speed: 300.13 samples/sec 10385.11 tokens/sec 7.96 updates/sec	perplexity=416.803147
+[2020-04-07:15:39:51:INFO:sockeye.training:__call__] Epoch[0] Batch [1450]	Speed: 360.13 samples/sec 10484.70 tokens/sec 7.90 updates/sec	perplexity=403.903448
+[2020-04-07:15:39:58:INFO:sockeye.training:__call__] Epoch[0] Batch [1500]	Speed: 401.42 samples/sec 10375.10 tokens/sec 7.81 updates/sec	perplexity=390.958805
+[2020-04-07:15:40:04:INFO:sockeye.training:__call__] Epoch[0] Batch [1550]	Speed: 348.46 samples/sec 10429.69 tokens/sec 7.99 updates/sec	perplexity=379.897953
+[2020-04-07:15:40:10:INFO:sockeye.training:__call__] Epoch[0] Batch [1600]	Speed: 311.82 samples/sec 10507.34 tokens/sec 7.87 updates/sec	perplexity=369.758063
+[2020-04-07:15:40:17:INFO:sockeye.training:__call__] Epoch[0] Batch [1650]	Speed: 348.85 samples/sec 10481.26 tokens/sec 7.90 updates/sec	perplexity=359.401920
+[2020-04-07:15:40:23:INFO:sockeye.training:__call__] Epoch[0] Batch [1700]	Speed: 309.58 samples/sec 10386.79 tokens/sec 7.89 updates/sec	perplexity=350.243304
+[2020-04-07:15:40:30:INFO:sockeye.training:__call__] Epoch[0] Batch [1750]	Speed: 347.23 samples/sec 10145.68 tokens/sec 7.67 updates/sec	perplexity=340.445888
+[2020-04-07:15:40:36:INFO:sockeye.training:__call__] Epoch[0] Batch [1800]	Speed: 334.10 samples/sec 10262.12 tokens/sec 7.82 updates/sec	perplexity=331.580899
+[2020-04-07:15:40:42:INFO:sockeye.training:__call__] Epoch[0] Batch [1850]	Speed: 292.30 samples/sec 10418.13 tokens/sec 7.91 updates/sec	perplexity=324.024226
+[2020-04-07:15:40:49:INFO:sockeye.training:__call__] Epoch[0] Batch [1900]	Speed: 301.33 samples/sec 10411.42 tokens/sec 7.99 updates/sec	perplexity=316.421687
+[2020-04-07:15:40:55:INFO:sockeye.training:__call__] Epoch[0] Batch [1950]	Speed: 332.80 samples/sec 10433.80 tokens/sec 7.92 updates/sec	perplexity=308.458397
+[2020-04-07:15:41:01:INFO:sockeye.training:__call__] Epoch[0] Batch [2000]	Speed: 371.58 samples/sec 10349.40 tokens/sec 7.78 updates/sec	perplexity=300.401998
+[2020-04-07:15:41:08:INFO:sockeye.training:__call__] Epoch[0] Batch [2050]	Speed: 269.52 samples/sec 10393.17 tokens/sec 8.01 updates/sec	perplexity=293.903006
+[2020-04-07:15:41:14:INFO:sockeye.training:__call__] Epoch[1] Batch [2100]	Speed: 356.96 samples/sec 10310.32 tokens/sec 7.78 updates/sec	perplexity=286.574512
+[2020-04-07:15:41:20:INFO:sockeye.training:__call__] Epoch[1] Batch [2150]	Speed: 342.69 samples/sec 10346.92 tokens/sec 7.90 updates/sec	perplexity=279.382602
+[2020-04-07:15:41:27:INFO:sockeye.training:__call__] Epoch[1] Batch [2200]	Speed: 377.37 samples/sec 10359.86 tokens/sec 7.78 updates/sec	perplexity=272.238922
+[2020-04-07:15:41:33:INFO:sockeye.training:__call__] Epoch[1] Batch [2250]	Speed: 311.50 samples/sec 10377.23 tokens/sec 7.81 updates/sec	perplexity=265.927303
+[2020-04-07:15:41:40:INFO:sockeye.training:__call__] Epoch[1] Batch [2300]	Speed: 292.74 samples/sec 10331.40 tokens/sec 7.91 updates/sec	perplexity=260.096997
+[2020-04-07:15:41:46:INFO:sockeye.training:__call__] Epoch[1] Batch [2350]	Speed: 314.62 samples/sec 10423.99 tokens/sec 7.91 updates/sec	perplexity=254.365511
+[2020-04-07:15:41:52:INFO:sockeye.training:__call__] Epoch[1] Batch [2400]	Speed: 268.05 samples/sec 10329.88 tokens/sec 8.10 updates/sec	perplexity=249.156137
+[2020-04-07:15:41:58:INFO:sockeye.training:__call__] Epoch[1] Batch [2450]	Speed: 317.44 samples/sec 10455.21 tokens/sec 8.02 updates/sec	perplexity=243.969642
+[2020-04-07:15:42:05:INFO:sockeye.training:__call__] Epoch[1] Batch [2500]	Speed: 302.28 samples/sec 10514.26 tokens/sec 7.98 updates/sec	perplexity=239.019860
+[2020-04-07:15:42:11:INFO:sockeye.training:__call__] Epoch[1] Batch [2550]	Speed: 301.97 samples/sec 10368.19 tokens/sec 7.88 updates/sec	perplexity=234.179215
+[2020-04-07:15:42:17:INFO:sockeye.training:__call__] Epoch[1] Batch [2600]	Speed: 341.72 samples/sec 10322.03 tokens/sec 7.83 updates/sec	perplexity=229.383918
+[2020-04-07:15:42:24:INFO:sockeye.training:__call__] Epoch[1] Batch [2650]	Speed: 347.19 samples/sec 10323.42 tokens/sec 7.82 updates/sec	perplexity=224.651214
+[2020-04-07:15:42:30:INFO:sockeye.training:__call__] Epoch[1] Batch [2700]	Speed: 311.01 samples/sec 10348.55 tokens/sec 7.88 updates/sec	perplexity=220.348471
+[2020-04-07:15:42:36:INFO:sockeye.training:__call__] Epoch[1] Batch [2750]	Speed: 295.14 samples/sec 10299.67 tokens/sec 7.96 updates/sec	perplexity=216.314891
+[2020-04-07:15:42:43:INFO:sockeye.training:__call__] Epoch[1] Batch [2800]	Speed: 299.39 samples/sec 10351.47 tokens/sec 7.91 updates/sec	perplexity=212.468745
+[2020-04-07:15:42:49:INFO:sockeye.training:__call__] Epoch[1] Batch [2850]	Speed: 355.33 samples/sec 10286.14 tokens/sec 7.79 updates/sec	perplexity=208.393352
+[2020-04-07:15:42:55:INFO:sockeye.training:__call__] Epoch[1] Batch [2900]	Speed: 303.62 samples/sec 10450.36 tokens/sec 7.98 updates/sec	perplexity=204.840367
+[2020-04-07:15:43:02:INFO:sockeye.training:__call__] Epoch[1] Batch [2950]	Speed: 349.34 samples/sec 10442.96 tokens/sec 7.78 updates/sec	perplexity=201.040982
+[2020-04-07:15:43:08:INFO:sockeye.training:__call__] Epoch[1] Batch [3000]	Speed: 312.68 samples/sec 10338.10 tokens/sec 7.82 updates/sec	perplexity=197.637243
+[2020-04-07:15:43:14:INFO:sockeye.training:__call__] Epoch[1] Batch [3050]	Speed: 347.24 samples/sec 10390.55 tokens/sec 7.87 updates/sec	perplexity=194.183442
+[2020-04-07:15:43:21:INFO:sockeye.training:__call__] Epoch[1] Batch [3100]	Speed: 336.77 samples/sec 10326.35 tokens/sec 7.86 updates/sec	perplexity=190.918095
+[2020-04-07:15:43:27:INFO:sockeye.training:__call__] Epoch[1] Batch [3150]	Speed: 318.59 samples/sec 10406.59 tokens/sec 7.99 updates/sec	perplexity=187.877658
+[2020-04-07:15:43:33:INFO:sockeye.training:__call__] Epoch[1] Batch [3200]	Speed: 344.48 samples/sec 10407.15 tokens/sec 7.92 updates/sec	perplexity=184.700481
+[2020-04-07:15:43:40:INFO:sockeye.training:__call__] Epoch[1] Batch [3250]	Speed: 400.87 samples/sec 10327.47 tokens/sec 7.76 updates/sec	perplexity=181.453994
+[2020-04-07:15:43:46:INFO:sockeye.training:__call__] Epoch[1] Batch [3300]	Speed: 322.70 samples/sec 10436.92 tokens/sec 7.91 updates/sec	perplexity=178.604295
+[2020-04-07:15:43:53:INFO:sockeye.training:__call__] Epoch[1] Batch [3350]	Speed: 338.47 samples/sec 10296.41 tokens/sec 7.74 updates/sec	perplexity=175.727254
+[2020-04-07:15:43:59:INFO:sockeye.training:__call__] Epoch[1] Batch [3400]	Speed: 320.40 samples/sec 10351.38 tokens/sec 7.92 updates/sec	perplexity=173.092143
+[2020-04-07:15:44:05:INFO:sockeye.training:__call__] Epoch[1] Batch [3450]	Speed: 312.84 samples/sec 10432.71 tokens/sec 7.89 updates/sec	perplexity=170.441513
+[2020-04-07:15:44:12:INFO:sockeye.training:__call__] Epoch[1] Batch [3500]	Speed: 308.49 samples/sec 10325.13 tokens/sec 7.98 updates/sec	perplexity=167.929951
+[2020-04-07:15:44:18:INFO:sockeye.training:__call__] Epoch[1] Batch [3550]	Speed: 341.76 samples/sec 10442.00 tokens/sec 7.95 updates/sec	perplexity=165.458478
+[2020-04-07:15:44:24:INFO:sockeye.training:__call__] Epoch[1] Batch [3600]	Speed: 320.85 samples/sec 10341.41 tokens/sec 7.92 updates/sec	perplexity=163.035267
+[2020-04-07:15:44:30:INFO:sockeye.training:__call__] Epoch[1] Batch [3650]	Speed: 311.56 samples/sec 10315.75 tokens/sec 7.96 updates/sec	perplexity=160.754387
+[2020-04-07:15:44:37:INFO:sockeye.training:__call__] Epoch[1] Batch [3700]	Speed: 326.89 samples/sec 10453.56 tokens/sec 7.85 updates/sec	perplexity=158.500281
+[2020-04-07:15:44:43:INFO:sockeye.training:__call__] Epoch[1] Batch [3750]	Speed: 350.93 samples/sec 10360.99 tokens/sec 7.95 updates/sec	perplexity=156.293190
+[2020-04-07:15:44:49:INFO:sockeye.training:__call__] Epoch[1] Batch [3800]	Speed: 322.78 samples/sec 10532.29 tokens/sec 7.96 updates/sec	perplexity=154.148142
+[2020-04-07:15:44:56:INFO:sockeye.training:__call__] Epoch[1] Batch [3850]	Speed: 353.33 samples/sec 10388.49 tokens/sec 7.89 updates/sec	perplexity=152.001750
+[2020-04-07:15:45:02:INFO:sockeye.training:__call__] Epoch[1] Batch [3900]	Speed: 329.21 samples/sec 10372.05 tokens/sec 7.92 updates/sec	perplexity=149.940587
+[2020-04-07:15:45:08:INFO:sockeye.training:__call__] Epoch[1] Batch [3950]	Speed: 303.88 samples/sec 10231.94 tokens/sec 7.82 updates/sec	perplexity=147.982928
+[2020-04-07:15:45:15:INFO:sockeye.training:__call__] Epoch[1] Batch [4000]	Speed: 336.96 samples/sec 10362.72 tokens/sec 7.84 updates/sec	perplexity=145.974940
+[2020-04-07:15:45:15:INFO:root:save_params_to_file] Saved params to "/content/chvrus_parent_model/params.00001"
+[2020-04-07:15:45:15:INFO:sockeye.training:fit] Checkpoint [1]	Updates=4000 Epoch=1 Samples=165296 Time-cost=504.913 Updates/sec=7.922
+[2020-04-07:15:45:15:INFO:sockeye.training:fit] Checkpoint [1]	Train-perplexity=145.974940
+[2020-04-07:15:45:18:INFO:sockeye.training:fit] Checkpoint [1]	Validation-perplexity=47.101781
+[2020-04-07:15:45:18:INFO:sockeye.training:start_decoder] Starting process: Decoder-1
+[2020-04-07:15:45:20:INFO:sockeye.training:fit] Validation-bleu has not improved for 1 checkpoints, best so far: 0.000000
+[2020-04-07:15:45:23:INFO:sockeye.utils:log_gpu_memory_usage] GPU 0: 2480/7611 MB (32.58%)
+[2020-04-07:15:45:36:INFO:sockeye.training:__call__] Epoch[1] Batch [4050]	Speed: 92.90 samples/sec 3172.71 tokens/sec 2.39 updates/sec	perplexity=53.299183
+[2020-04-07:15:45:49:INFO:sockeye.training:__call__] Epoch[1] Batch [4100]	Speed: 144.76 samples/sec 4804.37 tokens/sec 3.73 updates/sec	perplexity=53.251930
+[2020-04-07:15:45:59:INFO:sockeye.training:__call__] Epoch[2] Batch [4150]	Speed: 199.99 samples/sec 6473.81 tokens/sec 4.91 updates/sec	perplexity=49.893154
+[2020-04-07:15:46:09:INFO:sockeye.training:__call__] Epoch[2] Batch [4200]	Speed: 192.29 samples/sec 6700.57 tokens/sec 5.08 updates/sec	perplexity=48.326897
+[2020-04-07:15:46:19:INFO:sockeye.training:__call__] Epoch[2] Batch [4250]	Speed: 195.09 samples/sec 6493.39 tokens/sec 5.03 updates/sec	perplexity=47.210211
+[2020-04-07:15:46:30:INFO:sockeye.training:__call__] Epoch[2] Batch [4300]	Speed: 189.16 samples/sec 6223.60 tokens/sec 4.72 updates/sec	perplexity=46.411115
+[2020-04-07:15:46:40:INFO:sockeye.training:__call__] Epoch[2] Batch [4350]	Speed: 219.66 samples/sec 6306.98 tokens/sec 4.76 updates/sec	perplexity=45.396020
+[2020-04-07:15:46:50:INFO:sockeye.training:__call__] Epoch[2] Batch [4400]	Speed: 204.77 samples/sec 6574.51 tokens/sec 5.00 updates/sec	perplexity=44.900832
+[2020-04-07:15:46:57:INFO:sockeye.training:__call__] Epoch[2] Batch [4450]	Speed: 335.31 samples/sec 9244.10 tokens/sec 6.96 updates/sec	perplexity=43.923451
+[2020-04-07:15:47:04:INFO:sockeye.training:__call__] Epoch[2] Batch [4500]	Speed: 327.39 samples/sec 10469.53 tokens/sec 7.86 updates/sec	perplexity=43.634021
+[2020-04-07:15:47:10:INFO:sockeye.training:__call__] Epoch[2] Batch [4550]	Speed: 336.95 samples/sec 10375.89 tokens/sec 7.96 updates/sec	perplexity=43.086495
+[2020-04-07:15:47:16:INFO:sockeye.training:__call__] Epoch[2] Batch [4600]	Speed: 352.60 samples/sec 10341.96 tokens/sec 7.81 updates/sec	perplexity=42.566614
+[2020-04-07:15:47:23:INFO:sockeye.training:__call__] Epoch[2] Batch [4650]	Speed: 309.26 samples/sec 10310.21 tokens/sec 7.91 updates/sec	perplexity=42.478913
+[2020-04-07:15:47:29:INFO:sockeye.training:__call__] Epoch[2] Batch [4700]	Speed: 330.74 samples/sec 10427.60 tokens/sec 7.82 updates/sec	perplexity=42.201023
+[2020-04-07:15:47:36:INFO:sockeye.training:__call__] Epoch[2] Batch [4750]	Speed: 337.26 samples/sec 10303.72 tokens/sec 7.81 updates/sec	perplexity=41.950800
+[2020-04-07:15:47:42:INFO:sockeye.training:__call__] Epoch[2] Batch [4800]	Speed: 287.32 samples/sec 10306.35 tokens/sec 8.07 updates/sec	perplexity=41.919356
+[2020-04-07:15:47:48:INFO:sockeye.training:__call__] Epoch[2] Batch [4850]	Speed: 297.47 samples/sec 10356.14 tokens/sec 7.89 updates/sec	perplexity=41.796919
+[2020-04-07:15:47:54:INFO:sockeye.training:__call__] Epoch[2] Batch [4900]	Speed: 346.35 samples/sec 10315.23 tokens/sec 7.84 updates/sec	perplexity=41.485544
+[2020-04-07:15:48:01:INFO:sockeye.training:__call__] Epoch[2] Batch [4950]	Speed: 283.01 samples/sec 10346.47 tokens/sec 7.99 updates/sec	perplexity=41.411557
+[2020-04-07:15:48:07:INFO:sockeye.training:__call__] Epoch[2] Batch [5000]	Speed: 303.40 samples/sec 10465.64 tokens/sec 7.99 updates/sec	perplexity=41.359456
+[2020-04-07:15:48:13:INFO:sockeye.training:__call__] Epoch[2] Batch [5050]	Speed: 365.59 samples/sec 10317.62 tokens/sec 7.85 updates/sec	perplexity=41.061269
+[2020-04-07:15:48:20:INFO:sockeye.training:__call__] Epoch[2] Batch [5100]	Speed: 323.84 samples/sec 10469.64 tokens/sec 7.93 updates/sec	perplexity=40.918412
+[2020-04-07:15:48:26:INFO:sockeye.training:__call__] Epoch[2] Batch [5150]	Speed: 317.66 samples/sec 10376.24 tokens/sec 7.97 updates/sec	perplexity=40.788262
+[2020-04-07:15:48:32:INFO:sockeye.training:__call__] Epoch[2] Batch [5200]	Speed: 278.18 samples/sec 10345.78 tokens/sec 7.91 updates/sec	perplexity=40.705115
+[2020-04-07:15:48:39:INFO:sockeye.training:__call__] Epoch[2] Batch [5250]	Speed: 302.87 samples/sec 10346.43 tokens/sec 7.96 updates/sec	perplexity=40.585349
+[2020-04-07:15:48:45:INFO:sockeye.training:__call__] Epoch[2] Batch [5300]	Speed: 318.43 samples/sec 10394.38 tokens/sec 7.94 updates/sec	perplexity=40.445999
+[2020-04-07:15:48:51:INFO:sockeye.training:__call__] Epoch[2] Batch [5350]	Speed: 344.48 samples/sec 10234.77 tokens/sec 7.77 updates/sec	perplexity=40.213130
+[2020-04-07:15:48:58:INFO:sockeye.training:__call__] Epoch[2] Batch [5400]	Speed: 368.10 samples/sec 10283.01 tokens/sec 7.71 updates/sec	perplexity=39.931197
+[2020-04-07:15:49:04:INFO:sockeye.training:__call__] Epoch[2] Batch [5450]	Speed: 320.76 samples/sec 10379.84 tokens/sec 8.02 updates/sec	perplexity=39.810018
+[2020-04-07:15:49:10:INFO:sockeye.training:__call__] Epoch[2] Batch [5500]	Speed: 279.02 samples/sec 10460.01 tokens/sec 8.04 updates/sec	perplexity=39.690786
+[2020-04-07:15:49:17:INFO:sockeye.training:__call__] Epoch[2] Batch [5550]	Speed: 385.67 samples/sec 10379.29 tokens/sec 7.85 updates/sec	perplexity=39.466727
+[2020-04-07:15:49:23:INFO:sockeye.training:__call__] Epoch[2] Batch [5600]	Speed: 350.30 samples/sec 10339.75 tokens/sec 7.90 updates/sec	perplexity=39.270261
+[2020-04-07:15:49:29:INFO:sockeye.training:__call__] Epoch[2] Batch [5650]	Speed: 294.26 samples/sec 10477.38 tokens/sec 8.00 updates/sec	perplexity=39.140356
+[2020-04-07:15:49:36:INFO:sockeye.training:__call__] Epoch[2] Batch [5700]	Speed: 326.72 samples/sec 10362.54 tokens/sec 7.83 updates/sec	perplexity=38.994153
+[2020-04-07:15:49:42:INFO:sockeye.training:__call__] Epoch[2] Batch [5750]	Speed: 292.02 samples/sec 10353.14 tokens/sec 8.03 updates/sec	perplexity=38.915322
+[2020-04-07:15:49:48:INFO:sockeye.training:__call__] Epoch[2] Batch [5800]	Speed: 321.61 samples/sec 10363.00 tokens/sec 7.84 updates/sec	perplexity=38.775372
+[2020-04-07:15:49:54:INFO:sockeye.training:__call__] Epoch[2] Batch [5850]	Speed: 348.86 samples/sec 10446.85 tokens/sec 7.95 updates/sec	perplexity=38.583604
+[2020-04-07:15:50:01:INFO:sockeye.training:__call__] Epoch[2] Batch [5900]	Speed: 271.98 samples/sec 10426.19 tokens/sec 7.89 updates/sec	perplexity=38.480375
+[2020-04-07:15:50:07:INFO:sockeye.training:__call__] Epoch[2] Batch [5950]	Speed: 367.68 samples/sec 10326.75 tokens/sec 7.84 updates/sec	perplexity=38.283300
+[2020-04-07:15:50:13:INFO:sockeye.training:__call__] Epoch[2] Batch [6000]	Speed: 319.59 samples/sec 10398.99 tokens/sec 7.95 updates/sec	perplexity=38.158763
+[2020-04-07:15:50:20:INFO:sockeye.training:__call__] Epoch[2] Batch [6050]	Speed: 350.15 samples/sec 10333.96 tokens/sec 7.82 updates/sec	perplexity=37.991559
+[2020-04-07:15:50:26:INFO:sockeye.training:__call__] Epoch[2] Batch [6100]	Speed: 376.48 samples/sec 10448.06 tokens/sec 7.74 updates/sec	perplexity=37.787069
+[2020-04-07:15:50:33:INFO:sockeye.training:__call__] Epoch[2] Batch [6150]	Speed: 262.34 samples/sec 10348.48 tokens/sec 7.98 updates/sec	perplexity=37.718767
+[2020-04-07:15:50:39:INFO:sockeye.training:__call__] Epoch[3] Batch [6200]	Speed: 369.83 samples/sec 10383.25 tokens/sec 7.79 updates/sec	perplexity=37.427845
+[2020-04-07:15:50:45:INFO:sockeye.training:__call__] Epoch[3] Batch [6250]	Speed: 303.70 samples/sec 10449.24 tokens/sec 8.04 updates/sec	perplexity=37.118115
+[2020-04-07:15:50:52:INFO:sockeye.training:__call__] Epoch[3] Batch [6300]	Speed: 288.85 samples/sec 10341.12 tokens/sec 7.79 updates/sec	perplexity=36.881706
+[2020-04-07:15:50:58:INFO:sockeye.training:__call__] Epoch[3] Batch [6350]	Speed: 316.67 samples/sec 10302.14 tokens/sec 7.85 updates/sec	perplexity=36.608210
+[2020-04-07:15:51:04:INFO:sockeye.training:__call__] Epoch[3] Batch [6400]	Speed: 335.19 samples/sec 10338.04 tokens/sec 7.98 updates/sec	perplexity=36.325899
+[2020-04-07:15:51:11:INFO:sockeye.training:__call__] Epoch[3] Batch [6450]	Speed: 333.11 samples/sec 10349.84 tokens/sec 7.86 updates/sec	perplexity=36.054974
+[2020-04-07:15:51:17:INFO:sockeye.training:__call__] Epoch[3] Batch [6500]	Speed: 294.81 samples/sec 10435.63 tokens/sec 8.09 updates/sec	perplexity=35.849189
+[2020-04-07:15:51:23:INFO:sockeye.training:__call__] Epoch[3] Batch [6550]	Speed: 371.15 samples/sec 10500.11 tokens/sec 7.89 updates/sec	perplexity=35.570619
+[2020-04-07:15:51:30:INFO:sockeye.training:__call__] Epoch[3] Batch [6600]	Speed: 291.14 samples/sec 10215.12 tokens/sec 7.84 updates/sec	perplexity=35.381269
+[2020-04-07:15:51:36:INFO:sockeye.training:__call__] Epoch[3] Batch [6650]	Speed: 321.67 samples/sec 10367.16 tokens/sec 8.00 updates/sec	perplexity=35.174524
+[2020-04-07:15:51:42:INFO:sockeye.training:__call__] Epoch[3] Batch [6700]	Speed: 349.71 samples/sec 10393.94 tokens/sec 7.86 updates/sec	perplexity=34.944656
+[2020-04-07:15:51:48:INFO:sockeye.training:__call__] Epoch[3] Batch [6750]	Speed: 330.23 samples/sec 10342.58 tokens/sec 7.92 updates/sec	perplexity=34.745420
+[2020-04-07:15:51:55:INFO:sockeye.training:__call__] Epoch[3] Batch [6800]	Speed: 301.27 samples/sec 10416.90 tokens/sec 7.92 updates/sec	perplexity=34.549842
+[2020-04-07:15:52:01:INFO:sockeye.training:__call__] Epoch[3] Batch [6850]	Speed: 395.13 samples/sec 10265.05 tokens/sec 7.83 updates/sec	perplexity=34.301892
+[2020-04-07:15:52:07:INFO:sockeye.training:__call__] Epoch[3] Batch [6900]	Speed: 281.57 samples/sec 10441.26 tokens/sec 8.04 updates/sec	perplexity=34.145257
+[2020-04-07:15:52:14:INFO:sockeye.training:__call__] Epoch[3] Batch [6950]	Speed: 296.07 samples/sec 10439.39 tokens/sec 8.02 updates/sec	perplexity=33.979655
+[2020-04-07:15:52:20:INFO:sockeye.training:__call__] Epoch[3] Batch [7000]	Speed: 344.31 samples/sec 10368.27 tokens/sec 7.82 updates/sec	perplexity=33.814878
+[2020-04-07:15:52:26:INFO:sockeye.training:__call__] Epoch[3] Batch [7050]	Speed: 374.30 samples/sec 10371.42 tokens/sec 7.75 updates/sec	perplexity=33.617856
+[2020-04-07:15:52:33:INFO:sockeye.training:__call__] Epoch[3] Batch [7100]	Speed: 323.24 samples/sec 10358.34 tokens/sec 7.89 updates/sec	perplexity=33.482145
+[2020-04-07:15:52:39:INFO:sockeye.training:__call__] Epoch[3] Batch [7150]	Speed: 336.59 samples/sec 10385.11 tokens/sec 7.81 updates/sec	perplexity=33.309931
+[2020-04-07:15:52:46:INFO:sockeye.training:__call__] Epoch[3] Batch [7200]	Speed: 329.60 samples/sec 10304.14 tokens/sec 7.85 updates/sec	perplexity=33.158103
+[2020-04-07:15:52:52:INFO:sockeye.training:__call__] Epoch[3] Batch [7250]	Speed: 306.52 samples/sec 10426.79 tokens/sec 7.99 updates/sec	perplexity=33.027610
+[2020-04-07:15:52:58:INFO:sockeye.training:__call__] Epoch[3] Batch [7300]	Speed: 387.03 samples/sec 10270.39 tokens/sec 7.71 updates/sec	perplexity=32.836045
+[2020-04-07:15:53:05:INFO:sockeye.training:__call__] Epoch[3] Batch [7350]	Speed: 396.24 samples/sec 10253.91 tokens/sec 7.68 updates/sec	perplexity=32.654459
+[2020-04-07:15:53:11:INFO:sockeye.training:__call__] Epoch[3] Batch [7400]	Speed: 300.95 samples/sec 10339.34 tokens/sec 7.78 updates/sec	perplexity=32.547351
+[2020-04-07:15:53:17:INFO:sockeye.training:__call__] Epoch[3] Batch [7450]	Speed: 316.17 samples/sec 10486.77 tokens/sec 7.98 updates/sec	perplexity=32.431298
+[2020-04-07:15:53:24:INFO:sockeye.training:__call__] Epoch[3] Batch [7500]	Speed: 285.00 samples/sec 10428.77 tokens/sec 7.96 updates/sec	perplexity=32.345140
+[2020-04-07:15:53:30:INFO:sockeye.training:__call__] Epoch[3] Batch [7550]	Speed: 314.89 samples/sec 10354.98 tokens/sec 7.84 updates/sec	perplexity=32.238941
+[2020-04-07:15:53:36:INFO:sockeye.training:__call__] Epoch[3] Batch [7600]	Speed: 356.73 samples/sec 10449.91 tokens/sec 7.92 updates/sec	perplexity=32.095196
+[2020-04-07:15:53:43:INFO:sockeye.training:__call__] Epoch[3] Batch [7650]	Speed: 346.18 samples/sec 10363.74 tokens/sec 7.78 updates/sec	perplexity=31.949124
+[2020-04-07:15:53:49:INFO:sockeye.training:__call__] Epoch[3] Batch [7700]	Speed: 351.05 samples/sec 10390.70 tokens/sec 7.91 updates/sec	perplexity=31.820695
+[2020-04-07:15:53:55:INFO:sockeye.training:__call__] Epoch[3] Batch [7750]	Speed: 294.26 samples/sec 10382.32 tokens/sec 7.99 updates/sec	perplexity=31.722911
+[2020-04-07:15:54:02:INFO:sockeye.training:__call__] Epoch[3] Batch [7800]	Speed: 285.10 samples/sec 10466.16 tokens/sec 8.03 updates/sec	perplexity=31.636988
+[2020-04-07:15:54:08:INFO:sockeye.training:__call__] Epoch[3] Batch [7850]	Speed: 338.85 samples/sec 10432.88 tokens/sec 7.96 updates/sec	perplexity=31.540285
+[2020-04-07:15:54:14:INFO:sockeye.training:__call__] Epoch[3] Batch [7900]	Speed: 346.14 samples/sec 10390.37 tokens/sec 7.87 updates/sec	perplexity=31.440124
+[2020-04-07:15:54:21:INFO:sockeye.training:__call__] Epoch[3] Batch [7950]	Speed: 337.92 samples/sec 10278.97 tokens/sec 7.68 updates/sec	perplexity=31.331069
+[2020-04-07:15:54:27:INFO:sockeye.training:__call__] Epoch[3] Batch [8000]	Speed: 299.54 samples/sec 10369.08 tokens/sec 7.98 updates/sec	perplexity=31.254716
+[2020-04-07:15:54:27:INFO:root:save_params_to_file] Saved params to "/content/chvrus_parent_model/params.00002"
+[2020-04-07:15:54:27:INFO:sockeye.training:fit] Checkpoint [2]	Updates=8000 Epoch=3 Samples=330549 Time-cost=542.060 Updates/sec=7.379
+[2020-04-07:15:54:27:INFO:sockeye.training:fit] Checkpoint [2]	Train-perplexity=31.254716
+[2020-04-07:15:54:31:INFO:sockeye.training:fit] Checkpoint [2]	Validation-perplexity=25.237482
+[2020-04-07:15:54:31:INFO:sockeye.training:collect_results] Decoder-1 finished: {'bleu-val': 0.05179548815120387, 'chrf-val': 0.23178703140039544, 'rouge1-val': 0.2293907819360556, 'rouge2-val': 0.08548168262972015, 'rougel-val': 0.19555548664835262, 'length-ratio-mse': 0.9284067360394723, 'avg-sec-per-sent-val': 0.17388027334213257, 'decode-walltime-val': 86.94013667106628}
+[2020-04-07:15:54:31:INFO:sockeye.training:start_decoder] Starting process: Decoder-2
+[2020-04-07:15:54:32:INFO:sockeye.training:fit] Validation-bleu improved to 0.051795 (delta=0.051795).
+[2020-04-07:15:54:35:INFO:sockeye.utils:log_gpu_memory_usage] GPU 0: 2486/7611 MB (32.66%)
+[2020-04-07:15:54:47:INFO:sockeye.training:__call__] Epoch[3] Batch [8050]	Speed: 99.34 samples/sec 3288.39 tokens/sec 2.49 updates/sec	perplexity=23.901024
+[2020-04-07:15:55:01:INFO:sockeye.training:__call__] Epoch[3] Batch [8100]	Speed: 147.45 samples/sec 4755.51 tokens/sec 3.62 updates/sec	perplexity=23.886773
+[2020-04-07:15:55:11:INFO:sockeye.training:__call__] Epoch[3] Batch [8150]	Speed: 167.32 samples/sec 6579.90 tokens/sec 5.09 updates/sec	perplexity=24.562805
+[2020-04-07:15:55:21:INFO:sockeye.training:__call__] Epoch[3] Batch [8200]	Speed: 200.61 samples/sec 6714.19 tokens/sec 5.14 updates/sec	perplexity=24.417665
+[2020-04-07:15:55:30:INFO:sockeye.training:__call__] Epoch[4] Batch [8250]	Speed: 235.67 samples/sec 6751.45 tokens/sec 5.12 updates/sec	perplexity=23.646330
+[2020-04-07:15:55:41:INFO:sockeye.training:__call__] Epoch[4] Batch [8300]	Speed: 210.71 samples/sec 6418.81 tokens/sec 4.83 updates/sec	perplexity=22.544992
+[2020-04-07:15:55:51:INFO:sockeye.training:__call__] Epoch[4] Batch [8350]	Speed: 173.02 samples/sec 6187.41 tokens/sec 4.74 updates/sec	perplexity=22.009071
+[2020-04-07:15:56:02:INFO:sockeye.training:__call__] Epoch[4] Batch [8400]	Speed: 192.31 samples/sec 6329.11 tokens/sec 4.84 updates/sec	perplexity=21.495737
+[2020-04-07:15:56:10:INFO:sockeye.training:__call__] Epoch[4] Batch [8450]	Speed: 250.42 samples/sec 7979.48 tokens/sec 6.08 updates/sec	perplexity=21.168738
+[2020-04-07:15:56:16:INFO:sockeye.training:__call__] Epoch[4] Batch [8500]	Speed: 299.78 samples/sec 10329.18 tokens/sec 7.91 updates/sec	perplexity=21.011022
+[2020-04-07:15:56:22:INFO:sockeye.training:__call__] Epoch[4] Batch [8550]	Speed: 329.90 samples/sec 10360.50 tokens/sec 7.91 updates/sec	perplexity=20.813127
+[2020-04-07:15:56:29:INFO:sockeye.training:__call__] Epoch[4] Batch [8600]	Speed: 327.69 samples/sec 10298.58 tokens/sec 7.93 updates/sec	perplexity=20.647019
+[2020-04-07:15:56:35:INFO:sockeye.training:__call__] Epoch[4] Batch [8650]	Speed: 319.26 samples/sec 10451.93 tokens/sec 7.99 updates/sec	perplexity=20.522292
+[2020-04-07:15:56:41:INFO:sockeye.training:__call__] Epoch[4] Batch [8700]	Speed: 300.81 samples/sec 10390.04 tokens/sec 7.96 updates/sec	perplexity=20.465702
+[2020-04-07:15:56:48:INFO:sockeye.training:__call__] Epoch[4] Batch [8750]	Speed: 329.46 samples/sec 10423.38 tokens/sec 7.87 updates/sec	perplexity=20.363887
+[2020-04-07:15:56:54:INFO:sockeye.training:__call__] Epoch[4] Batch [8800]	Speed: 334.19 samples/sec 10484.71 tokens/sec 7.83 updates/sec	perplexity=20.155791
+[2020-04-07:15:57:00:INFO:sockeye.training:__call__] Epoch[4] Batch [8850]	Speed: 316.81 samples/sec 10372.85 tokens/sec 7.88 updates/sec	perplexity=20.129539
+[2020-04-07:15:57:07:INFO:sockeye.training:__call__] Epoch[4] Batch [8900]	Speed: 332.40 samples/sec 10357.98 tokens/sec 7.84 updates/sec	perplexity=20.038510
+[2020-04-07:15:57:13:INFO:sockeye.training:__call__] Epoch[4] Batch [8950]	Speed: 368.45 samples/sec 10395.42 tokens/sec 7.83 updates/sec	perplexity=19.966029
+[2020-04-07:15:57:19:INFO:sockeye.training:__call__] Epoch[4] Batch [9000]	Speed: 280.19 samples/sec 10400.23 tokens/sec 8.06 updates/sec	perplexity=19.944171
+[2020-04-07:15:57:26:INFO:sockeye.training:__call__] Epoch[4] Batch [9050]	Speed: 286.03 samples/sec 10457.63 tokens/sec 8.05 updates/sec	perplexity=19.955276
+[2020-04-07:15:57:32:INFO:sockeye.training:__call__] Epoch[4] Batch [9100]	Speed: 317.24 samples/sec 10413.84 tokens/sec 7.84 updates/sec	perplexity=19.928443
+[2020-04-07:15:57:38:INFO:sockeye.training:__call__] Epoch[4] Batch [9150]	Speed: 381.59 samples/sec 10363.73 tokens/sec 7.75 updates/sec	perplexity=19.849565
+[2020-04-07:15:57:45:INFO:sockeye.training:__call__] Epoch[4] Batch [9200]	Speed: 338.27 samples/sec 10473.91 tokens/sec 7.87 updates/sec	perplexity=19.827786
+[2020-04-07:15:57:51:INFO:sockeye.training:__call__] Epoch[4] Batch [9250]	Speed: 333.29 samples/sec 10417.88 tokens/sec 7.91 updates/sec	perplexity=19.798369
+[2020-04-07:15:57:57:INFO:sockeye.training:__call__] Epoch[4] Batch [9300]	Speed: 300.69 samples/sec 10484.81 tokens/sec 8.02 updates/sec	perplexity=19.815636
+[2020-04-07:15:58:04:INFO:sockeye.training:__call__] Epoch[4] Batch [9350]	Speed: 305.33 samples/sec 10425.46 tokens/sec 8.01 updates/sec	perplexity=19.806128
+[2020-04-07:15:58:10:INFO:sockeye.training:__call__] Epoch[4] Batch [9400]	Speed: 392.56 samples/sec 10354.27 tokens/sec 7.81 updates/sec	perplexity=19.748333
+[2020-04-07:15:58:16:INFO:sockeye.training:__call__] Epoch[4] Batch [9450]	Speed: 364.74 samples/sec 10414.34 tokens/sec 7.90 updates/sec	perplexity=19.668559
+[2020-04-07:15:58:23:INFO:sockeye.training:__call__] Epoch[4] Batch [9500]	Speed: 354.81 samples/sec 10244.19 tokens/sec 7.70 updates/sec	perplexity=19.619944
+[2020-04-07:15:58:29:INFO:sockeye.training:__call__] Epoch[4] Batch [9550]	Speed: 340.20 samples/sec 10395.15 tokens/sec 7.88 updates/sec	perplexity=19.588877
+[2020-04-07:15:58:35:INFO:sockeye.training:__call__] Epoch[4] Batch [9600]	Speed: 326.12 samples/sec 10409.41 tokens/sec 7.90 updates/sec	perplexity=19.563246
+[2020-04-07:15:58:42:INFO:sockeye.training:__call__] Epoch[4] Batch [9650]	Speed: 311.52 samples/sec 10350.85 tokens/sec 7.90 updates/sec	perplexity=19.560111
+[2020-04-07:15:58:48:INFO:sockeye.training:__call__] Epoch[4] Batch [9700]	Speed: 325.90 samples/sec 10366.51 tokens/sec 7.94 updates/sec	perplexity=19.541758
+[2020-04-07:15:58:54:INFO:sockeye.training:__call__] Epoch[4] Batch [9750]	Speed: 284.51 samples/sec 10353.47 tokens/sec 7.96 updates/sec	perplexity=19.541414
+[2020-04-07:15:59:01:INFO:sockeye.training:__call__] Epoch[4] Batch [9800]	Speed: 335.15 samples/sec 10370.06 tokens/sec 7.81 updates/sec	perplexity=19.502434
+[2020-04-07:15:59:07:INFO:sockeye.training:__call__] Epoch[4] Batch [9850]	Speed: 331.46 samples/sec 10423.28 tokens/sec 7.91 updates/sec	perplexity=19.529765
+[2020-04-07:15:59:13:INFO:sockeye.training:__call__] Epoch[4] Batch [9900]	Speed: 268.24 samples/sec 10343.58 tokens/sec 7.97 updates/sec	perplexity=19.538020
+[2020-04-07:15:59:20:INFO:sockeye.training:__call__] Epoch[4] Batch [9950]	Speed: 375.68 samples/sec 10373.84 tokens/sec 7.84 updates/sec	perplexity=19.496196
+[2020-04-07:15:59:26:INFO:sockeye.training:__call__] Epoch[4] Batch [10000]	Speed: 317.39 samples/sec 10395.58 tokens/sec 7.84 updates/sec	perplexity=19.472733
+[2020-04-07:15:59:32:INFO:sockeye.training:__call__] Epoch[4] Batch [10050]	Speed: 302.52 samples/sec 10425.38 tokens/sec 8.02 updates/sec	perplexity=19.462828
+[2020-04-07:15:59:39:INFO:sockeye.training:__call__] Epoch[4] Batch [10100]	Speed: 297.67 samples/sec 10394.17 tokens/sec 8.08 updates/sec	perplexity=19.449699
+[2020-04-07:15:59:45:INFO:sockeye.training:__call__] Epoch[4] Batch [10150]	Speed: 354.87 samples/sec 10371.30 tokens/sec 7.89 updates/sec	perplexity=19.404551
+[2020-04-07:15:59:51:INFO:sockeye.training:__call__] Epoch[4] Batch [10200]	Speed: 323.21 samples/sec 10384.12 tokens/sec 7.96 updates/sec	perplexity=19.384236
+[2020-04-07:15:59:58:INFO:sockeye.training:__call__] Epoch[4] Batch [10250]	Speed: 347.87 samples/sec 10317.80 tokens/sec 7.88 updates/sec	perplexity=19.349217
+[2020-04-07:16:00:04:INFO:sockeye.training:__call__] Epoch[5] Batch [10300]	Speed: 344.07 samples/sec 10341.15 tokens/sec 7.88 updates/sec	perplexity=19.294667
+[2020-04-07:16:00:10:INFO:sockeye.training:__call__] Epoch[5] Batch [10350]	Speed: 301.03 samples/sec 10382.44 tokens/sec 7.91 updates/sec	perplexity=19.176473
+[2020-04-07:16:00:17:INFO:sockeye.training:__call__] Epoch[5] Batch [10400]	Speed: 425.45 samples/sec 10411.64 tokens/sec 7.67 updates/sec	perplexity=19.022385
+[2020-04-07:16:00:23:INFO:sockeye.training:__call__] Epoch[5] Batch [10450]	Speed: 299.23 samples/sec 10420.50 tokens/sec 7.98 updates/sec	perplexity=18.926673
+[2020-04-07:16:00:29:INFO:sockeye.training:__call__] Epoch[5] Batch [10500]	Speed: 325.74 samples/sec 10434.11 tokens/sec 7.90 updates/sec	perplexity=18.835527
+[2020-04-07:16:00:36:INFO:sockeye.training:__call__] Epoch[5] Batch [10550]	Speed: 328.48 samples/sec 10514.73 tokens/sec 7.90 updates/sec	perplexity=18.740498
+[2020-04-07:16:00:42:INFO:sockeye.training:__call__] Epoch[5] Batch [10600]	Speed: 313.57 samples/sec 10416.79 tokens/sec 7.96 updates/sec	perplexity=18.651592
+[2020-04-07:16:00:48:INFO:sockeye.training:__call__] Epoch[5] Batch [10650]	Speed: 326.50 samples/sec 10364.15 tokens/sec 7.93 updates/sec	perplexity=18.563753
+[2020-04-07:16:00:55:INFO:sockeye.training:__call__] Epoch[5] Batch [10700]	Speed: 340.95 samples/sec 10383.89 tokens/sec 7.93 updates/sec	perplexity=18.465498
+[2020-04-07:16:01:01:INFO:sockeye.training:__call__] Epoch[5] Batch [10750]	Speed: 320.99 samples/sec 10434.01 tokens/sec 7.95 updates/sec	perplexity=18.398922
+[2020-04-07:16:01:07:INFO:sockeye.training:__call__] Epoch[5] Batch [10800]	Speed: 301.43 samples/sec 10508.41 tokens/sec 7.99 updates/sec	perplexity=18.335587
+[2020-04-07:16:01:13:INFO:sockeye.training:__call__] Epoch[5] Batch [10850]	Speed: 340.30 samples/sec 10407.13 tokens/sec 7.86 updates/sec	perplexity=18.258511
+[2020-04-07:16:01:20:INFO:sockeye.training:__call__] Epoch[5] Batch [10900]	Speed: 310.69 samples/sec 10368.34 tokens/sec 7.90 updates/sec	perplexity=18.208099
+[2020-04-07:16:01:26:INFO:sockeye.training:__call__] Epoch[5] Batch [10950]	Speed: 290.56 samples/sec 10376.17 tokens/sec 7.94 updates/sec	perplexity=18.160884
+[2020-04-07:16:01:32:INFO:sockeye.training:__call__] Epoch[5] Batch [11000]	Speed: 344.96 samples/sec 10329.68 tokens/sec 7.93 updates/sec	perplexity=18.093852
+[2020-04-07:16:01:39:INFO:sockeye.training:__call__] Epoch[5] Batch [11050]	Speed: 374.53 samples/sec 10320.84 tokens/sec 7.74 updates/sec	perplexity=18.022620
+[2020-04-07:16:01:45:INFO:sockeye.training:__call__] Epoch[5] Batch [11100]	Speed: 338.09 samples/sec 10418.61 tokens/sec 7.93 updates/sec	perplexity=17.957455
+[2020-04-07:16:01:52:INFO:sockeye.training:__call__] Epoch[5] Batch [11150]	Speed: 347.01 samples/sec 10328.34 tokens/sec 7.73 updates/sec	perplexity=17.906626
+[2020-04-07:16:01:58:INFO:sockeye.training:__call__] Epoch[5] Batch [11200]	Speed: 329.54 samples/sec 10374.52 tokens/sec 7.93 updates/sec	perplexity=17.860834
+[2020-04-07:16:02:04:INFO:sockeye.training:__call__] Epoch[5] Batch [11250]	Speed: 347.26 samples/sec 10420.96 tokens/sec 7.80 updates/sec	perplexity=17.818097
+[2020-04-07:16:02:11:INFO:sockeye.training:__call__] Epoch[5] Batch [11300]	Speed: 338.56 samples/sec 10362.01 tokens/sec 7.89 updates/sec	perplexity=17.776312
+[2020-04-07:16:02:17:INFO:sockeye.training:__call__] Epoch[5] Batch [11350]	Speed: 341.21 samples/sec 10383.19 tokens/sec 7.89 updates/sec	perplexity=17.723202
+[2020-04-07:16:02:23:INFO:sockeye.training:__call__] Epoch[5] Batch [11400]	Speed: 335.84 samples/sec 10429.68 tokens/sec 7.98 updates/sec	perplexity=17.680420
+[2020-04-07:16:02:30:INFO:sockeye.training:__call__] Epoch[5] Batch [11450]	Speed: 286.54 samples/sec 10381.95 tokens/sec 7.95 updates/sec	perplexity=17.656621
+[2020-04-07:16:02:36:INFO:sockeye.training:__call__] Epoch[5] Batch [11500]	Speed: 283.83 samples/sec 10467.86 tokens/sec 8.12 updates/sec	perplexity=17.628531
+[2020-04-07:16:02:42:INFO:sockeye.training:__call__] Epoch[5] Batch [11550]	Speed: 304.12 samples/sec 10425.56 tokens/sec 7.84 updates/sec	perplexity=17.608628
+[2020-04-07:16:02:48:INFO:sockeye.training:__call__] Epoch[5] Batch [11600]	Speed: 327.14 samples/sec 10358.49 tokens/sec 7.84 updates/sec	perplexity=17.564278
+[2020-04-07:16:02:55:INFO:sockeye.training:__call__] Epoch[5] Batch [11650]	Speed: 310.35 samples/sec 10368.46 tokens/sec 7.84 updates/sec	perplexity=17.535161
+[2020-04-07:16:03:01:INFO:sockeye.training:__call__] Epoch[5] Batch [11700]	Speed: 334.20 samples/sec 10413.61 tokens/sec 7.98 updates/sec	perplexity=17.504214
+[2020-04-07:16:03:08:INFO:sockeye.training:__call__] Epoch[5] Batch [11750]	Speed: 385.66 samples/sec 10341.58 tokens/sec 7.73 updates/sec	perplexity=17.455594
+[2020-04-07:16:03:14:INFO:sockeye.training:__call__] Epoch[5] Batch [11800]	Speed: 359.87 samples/sec 10465.01 tokens/sec 7.89 updates/sec	perplexity=17.412798
+[2020-04-07:16:03:20:INFO:sockeye.training:__call__] Epoch[5] Batch [11850]	Speed: 355.03 samples/sec 10375.18 tokens/sec 7.83 updates/sec	perplexity=17.382905
+[2020-04-07:16:03:27:INFO:sockeye.training:__call__] Epoch[5] Batch [11900]	Speed: 288.23 samples/sec 10402.79 tokens/sec 7.97 updates/sec	perplexity=17.365534
+[2020-04-07:16:03:33:INFO:sockeye.training:__call__] Epoch[5] Batch [11950]	Speed: 263.31 samples/sec 10432.36 tokens/sec 8.19 updates/sec	perplexity=17.356130
+[2020-04-07:16:03:39:INFO:sockeye.training:__call__] Epoch[5] Batch [12000]	Speed: 284.00 samples/sec 10319.72 tokens/sec 7.98 updates/sec	perplexity=17.340725
+[2020-04-07:16:03:39:INFO:root:save_params_to_file] Saved params to "/content/chvrus_parent_model/params.00003"
+[2020-04-07:16:03:39:INFO:sockeye.training:fit] Checkpoint [3]	Updates=12000 Epoch=5 Samples=495414 Time-cost=542.263 Updates/sec=7.376
+[2020-04-07:16:03:39:INFO:sockeye.training:fit] Checkpoint [3]	Train-perplexity=17.340725
+[2020-04-07:16:03:42:INFO:sockeye.training:fit] Checkpoint [3]	Validation-perplexity=19.557097
+[2020-04-07:16:03:42:INFO:sockeye.training:collect_results] Decoder-2 finished: {'bleu-val': 0.09368181739250947, 'chrf-val': 0.3159489354828883, 'rouge1-val': 0.2987615390965355, 'rouge2-val': 0.13623729877304402, 'rougel-val': 0.25596599057275493, 'length-ratio-mse': 0.9662764543038378, 'avg-sec-per-sent-val': 0.17853346920013427, 'decode-walltime-val': 89.26673460006714}
+[2020-04-07:16:03:42:INFO:sockeye.training:start_decoder] Starting process: Decoder-3
+[2020-04-07:16:03:44:INFO:sockeye.training:fit] Validation-bleu improved to 0.093682 (delta=0.041886).
+[2020-04-07:16:03:47:INFO:sockeye.utils:log_gpu_memory_usage] GPU 0: 2484/7611 MB (32.64%)
+[2020-04-07:16:03:58:INFO:sockeye.training:__call__] Epoch[5] Batch [12050]	Speed: 105.55 samples/sec 3353.34 tokens/sec 2.56 updates/sec	perplexity=15.438807
+[2020-04-07:16:04:12:INFO:sockeye.training:__call__] Epoch[5] Batch [12100]	Speed: 114.69 samples/sec 4684.18 tokens/sec 3.65 updates/sec	perplexity=15.782709
+[2020-04-07:16:04:22:INFO:sockeye.training:__call__] Epoch[5] Batch [12150]	Speed: 224.34 samples/sec 6658.66 tokens/sec 5.04 updates/sec	perplexity=15.525074
+[2020-04-07:16:04:32:INFO:sockeye.training:__call__] Epoch[5] Batch [12200]	Speed: 202.99 samples/sec 6744.02 tokens/sec 5.15 updates/sec	perplexity=15.629894
+[2020-04-07:16:04:41:INFO:sockeye.training:__call__] Epoch[5] Batch [12250]	Speed: 224.00 samples/sec 6733.53 tokens/sec 5.18 updates/sec	perplexity=15.505641
+[2020-04-07:16:04:52:INFO:sockeye.training:__call__] Epoch[5] Batch [12300]	Speed: 194.16 samples/sec 6202.74 tokens/sec 4.74 updates/sec	perplexity=15.587626
+[2020-04-07:16:05:02:INFO:sockeye.training:__call__] Epoch[6] Batch [12350]	Speed: 194.28 samples/sec 6397.84 tokens/sec 4.89 updates/sec	perplexity=15.384352
+[2020-04-07:16:05:12:INFO:sockeye.training:__call__] Epoch[6] Batch [12400]	Speed: 192.21 samples/sec 6646.68 tokens/sec 5.07 updates/sec	perplexity=14.812164
+[2020-04-07:16:05:19:INFO:sockeye.training:__call__] Epoch[6] Batch [12450]	Speed: 292.31 samples/sec 9051.06 tokens/sec 6.84 updates/sec	perplexity=14.353722
+[2020-04-07:16:05:26:INFO:sockeye.training:__call__] Epoch[6] Batch [12500]	Speed: 322.20 samples/sec 10373.34 tokens/sec 7.76 updates/sec	perplexity=14.029182
+[2020-04-07:16:05:32:INFO:sockeye.training:__call__] Epoch[6] Batch [12550]	Speed: 316.22 samples/sec 10279.86 tokens/sec 7.85 updates/sec	perplexity=13.787037
+[2020-04-07:16:05:39:INFO:sockeye.training:__call__] Epoch[6] Batch [12600]	Speed: 315.61 samples/sec 10314.56 tokens/sec 7.88 updates/sec	perplexity=13.631882
+[2020-04-07:16:05:45:INFO:sockeye.training:__call__] Epoch[6] Batch [12650]	Speed: 318.91 samples/sec 10300.10 tokens/sec 7.88 updates/sec	perplexity=13.486577
+[2020-04-07:16:05:51:INFO:sockeye.training:__call__] Epoch[6] Batch [12700]	Speed: 333.73 samples/sec 10347.27 tokens/sec 7.83 updates/sec	perplexity=13.389874
+[2020-04-07:16:05:58:INFO:sockeye.training:__call__] Epoch[6] Batch [12750]	Speed: 327.76 samples/sec 10259.89 tokens/sec 7.74 updates/sec	perplexity=13.276378
+[2020-04-07:16:06:04:INFO:sockeye.training:__call__] Epoch[6] Batch [12800]	Speed: 304.39 samples/sec 10404.48 tokens/sec 7.96 updates/sec	perplexity=13.244019
+[2020-04-07:16:06:10:INFO:sockeye.training:__call__] Epoch[6] Batch [12850]	Speed: 360.37 samples/sec 10490.39 tokens/sec 7.90 updates/sec	perplexity=13.174742
+[2020-04-07:16:06:17:INFO:sockeye.training:__call__] Epoch[6] Batch [12900]	Speed: 297.00 samples/sec 10429.67 tokens/sec 8.05 updates/sec	perplexity=13.143417
+[2020-04-07:16:06:23:INFO:sockeye.training:__call__] Epoch[6] Batch [12950]	Speed: 312.97 samples/sec 10445.50 tokens/sec 7.99 updates/sec	perplexity=13.088698
+[2020-04-07:16:06:29:INFO:sockeye.training:__call__] Epoch[6] Batch [13000]	Speed: 289.53 samples/sec 10330.42 tokens/sec 7.88 updates/sec	perplexity=13.077678
+[2020-04-07:16:06:35:INFO:sockeye.training:__call__] Epoch[6] Batch [13050]	Speed: 307.87 samples/sec 10386.49 tokens/sec 7.99 updates/sec	perplexity=13.062104
+[2020-04-07:16:06:42:INFO:sockeye.training:__call__] Epoch[6] Batch [13100]	Speed: 333.03 samples/sec 10465.65 tokens/sec 7.94 updates/sec	perplexity=13.042970
+[2020-04-07:16:06:48:INFO:sockeye.training:__call__] Epoch[6] Batch [13150]	Speed: 315.74 samples/sec 10410.36 tokens/sec 7.97 updates/sec	perplexity=13.022647
+[2020-04-07:16:06:54:INFO:sockeye.training:__call__] Epoch[6] Batch [13200]	Speed: 359.65 samples/sec 10384.50 tokens/sec 7.91 updates/sec	perplexity=12.966559
+[2020-04-07:16:07:01:INFO:sockeye.training:__call__] Epoch[6] Batch [13250]	Speed: 373.76 samples/sec 10463.09 tokens/sec 7.86 updates/sec	perplexity=12.924935
+[2020-04-07:16:07:07:INFO:sockeye.training:__call__] Epoch[6] Batch [13300]	Speed: 328.39 samples/sec 10228.94 tokens/sec 7.86 updates/sec	perplexity=12.899386
+[2020-04-07:16:07:14:INFO:sockeye.training:__call__] Epoch[6] Batch [13350]	Speed: 374.28 samples/sec 10369.08 tokens/sec 7.70 updates/sec	perplexity=12.846213
+[2020-04-07:16:07:20:INFO:sockeye.training:__call__] Epoch[6] Batch [13400]	Speed: 323.91 samples/sec 10395.16 tokens/sec 7.92 updates/sec	perplexity=12.848738
+[2020-04-07:16:07:26:INFO:sockeye.training:__call__] Epoch[6] Batch [13450]	Speed: 354.88 samples/sec 10403.66 tokens/sec 7.88 updates/sec	perplexity=12.832152
+[2020-04-07:16:07:32:INFO:sockeye.training:__call__] Epoch[6] Batch [13500]	Speed: 306.49 samples/sec 10435.31 tokens/sec 7.97 updates/sec	perplexity=12.839992
+[2020-04-07:16:07:39:INFO:sockeye.training:__call__] Epoch[6] Batch [13550]	Speed: 329.85 samples/sec 10483.22 tokens/sec 7.92 updates/sec	perplexity=12.849793
+[2020-04-07:16:07:45:INFO:sockeye.training:__call__] Epoch[6] Batch [13600]	Speed: 315.39 samples/sec 10365.13 tokens/sec 7.92 updates/sec	perplexity=12.852217
+[2020-04-07:16:07:51:INFO:sockeye.training:__call__] Epoch[6] Batch [13650]	Speed: 321.04 samples/sec 10398.46 tokens/sec 7.97 updates/sec	perplexity=12.854478
+[2020-04-07:16:07:58:INFO:sockeye.training:__call__] Epoch[6] Batch [13700]	Speed: 363.40 samples/sec 10464.18 tokens/sec 7.96 updates/sec	perplexity=12.841640
+[2020-04-07:16:08:04:INFO:sockeye.training:__call__] Epoch[6] Batch [13750]	Speed: 337.54 samples/sec 10431.68 tokens/sec 7.91 updates/sec	perplexity=12.826425
+[2020-04-07:16:08:10:INFO:sockeye.training:__call__] Epoch[6] Batch [13800]	Speed: 362.12 samples/sec 10477.91 tokens/sec 7.97 updates/sec	perplexity=12.806453
+[2020-04-07:16:08:17:INFO:sockeye.training:__call__] Epoch[6] Batch [13850]	Speed: 337.65 samples/sec 10322.21 tokens/sec 7.83 updates/sec	perplexity=12.808800
+[2020-04-07:16:08:23:INFO:sockeye.training:__call__] Epoch[6] Batch [13900]	Speed: 312.56 samples/sec 10339.68 tokens/sec 7.89 updates/sec	perplexity=12.819029
+[2020-04-07:16:08:29:INFO:sockeye.training:__call__] Epoch[6] Batch [13950]	Speed: 358.23 samples/sec 10369.22 tokens/sec 7.80 updates/sec	perplexity=12.810575
+[2020-04-07:16:08:36:INFO:sockeye.training:__call__] Epoch[6] Batch [14000]	Speed: 303.55 samples/sec 10282.55 tokens/sec 7.85 updates/sec	perplexity=12.815125
+[2020-04-07:16:08:42:INFO:sockeye.training:__call__] Epoch[6] Batch [14050]	Speed: 321.81 samples/sec 10496.01 tokens/sec 7.97 updates/sec	perplexity=12.821689
+[2020-04-07:16:08:48:INFO:sockeye.training:__call__] Epoch[6] Batch [14100]	Speed: 351.66 samples/sec 10391.56 tokens/sec 7.92 updates/sec	perplexity=12.816876
+[2020-04-07:16:08:55:INFO:sockeye.training:__call__] Epoch[6] Batch [14150]	Speed: 289.16 samples/sec 10395.59 tokens/sec 7.94 updates/sec	perplexity=12.844664
+[2020-04-07:16:09:01:INFO:sockeye.training:__call__] Epoch[6] Batch [14200]	Speed: 339.58 samples/sec 10384.70 tokens/sec 7.89 updates/sec	perplexity=12.845425
+[2020-04-07:16:09:07:INFO:sockeye.training:__call__] Epoch[6] Batch [14250]	Speed: 263.00 samples/sec 10368.63 tokens/sec 8.04 updates/sec	perplexity=12.860886
+[2020-04-07:16:09:13:INFO:sockeye.training:__call__] Epoch[6] Batch [14300]	Speed: 336.62 samples/sec 10471.58 tokens/sec 8.04 updates/sec	perplexity=12.857934
+[2020-04-07:16:09:20:INFO:sockeye.training:__call__] Epoch[6] Batch [14350]	Speed: 298.19 samples/sec 10322.93 tokens/sec 7.83 updates/sec	perplexity=12.874516
+[2020-04-07:16:09:26:INFO:sockeye.training:__call__] Epoch[7] Batch [14400]	Speed: 313.56 samples/sec 10191.45 tokens/sec 7.77 updates/sec	perplexity=12.870887
+[2020-04-07:16:09:33:INFO:sockeye.training:__call__] Epoch[7] Batch [14450]	Speed: 347.68 samples/sec 10393.67 tokens/sec 7.96 updates/sec	perplexity=12.787408
+[2020-04-07:16:09:39:INFO:sockeye.training:__call__] Epoch[7] Batch [14500]	Speed: 342.45 samples/sec 10357.91 tokens/sec 7.82 updates/sec	perplexity=12.713336
+[2020-04-07:16:09:45:INFO:sockeye.training:__call__] Epoch[7] Batch [14550]	Speed: 375.68 samples/sec 10181.08 tokens/sec 7.78 updates/sec	perplexity=12.636332
+[2020-04-07:16:09:52:INFO:sockeye.training:__call__] Epoch[7] Batch [14600]	Speed: 327.12 samples/sec 10366.82 tokens/sec 7.88 updates/sec	perplexity=12.568943
+[2020-04-07:16:09:58:INFO:sockeye.training:__call__] Epoch[7] Batch [14650]	Speed: 349.96 samples/sec 10418.40 tokens/sec 7.89 updates/sec	perplexity=12.503635
+[2020-04-07:16:10:04:INFO:sockeye.training:__call__] Epoch[7] Batch [14700]	Speed: 298.63 samples/sec 10336.61 tokens/sec 7.92 updates/sec	perplexity=12.453339
+[2020-04-07:16:10:11:INFO:sockeye.training:__call__] Epoch[7] Batch [14750]	Speed: 320.10 samples/sec 10348.86 tokens/sec 7.88 updates/sec	perplexity=12.400883
+[2020-04-07:16:10:17:INFO:sockeye.training:__call__] Epoch[7] Batch [14800]	Speed: 341.04 samples/sec 10385.81 tokens/sec 7.97 updates/sec	perplexity=12.347848
+[2020-04-07:16:10:23:INFO:sockeye.training:__call__] Epoch[7] Batch [14850]	Speed: 341.75 samples/sec 10433.26 tokens/sec 7.93 updates/sec	perplexity=12.302137
+[2020-04-07:16:10:30:INFO:sockeye.training:__call__] Epoch[7] Batch [14900]	Speed: 310.14 samples/sec 10387.49 tokens/sec 7.96 updates/sec	perplexity=12.259295
+[2020-04-07:16:10:36:INFO:sockeye.training:__call__] Epoch[7] Batch [14950]	Speed: 341.32 samples/sec 10415.19 tokens/sec 7.91 updates/sec	perplexity=12.223985
+[2020-04-07:16:10:42:INFO:sockeye.training:__call__] Epoch[7] Batch [15000]	Speed: 302.33 samples/sec 10394.68 tokens/sec 7.91 updates/sec	perplexity=12.191632
+[2020-04-07:16:10:48:INFO:sockeye.training:__call__] Epoch[7] Batch [15050]	Speed: 317.23 samples/sec 10364.22 tokens/sec 7.93 updates/sec	perplexity=12.165722
+[2020-04-07:16:10:55:INFO:sockeye.training:__call__] Epoch[7] Batch [15100]	Speed: 291.99 samples/sec 10357.96 tokens/sec 7.99 updates/sec	perplexity=12.144207
+[2020-04-07:16:11:01:INFO:sockeye.training:__call__] Epoch[7] Batch [15150]	Speed: 355.96 samples/sec 10270.11 tokens/sec 7.80 updates/sec	perplexity=12.109493
+[2020-04-07:16:11:07:INFO:sockeye.training:__call__] Epoch[7] Batch [15200]	Speed: 354.17 samples/sec 10435.89 tokens/sec 7.88 updates/sec	perplexity=12.076998
+[2020-04-07:16:11:14:INFO:sockeye.training:__call__] Epoch[7] Batch [15250]	Speed: 317.30 samples/sec 10401.49 tokens/sec 8.01 updates/sec	perplexity=12.050301
+[2020-04-07:16:11:20:INFO:sockeye.training:__call__] Epoch[7] Batch [15300]	Speed: 303.05 samples/sec 10436.64 tokens/sec 7.94 updates/sec	perplexity=12.037103
+[2020-04-07:16:11:26:INFO:sockeye.training:__call__] Epoch[7] Batch [15350]	Speed: 312.16 samples/sec 10438.59 tokens/sec 7.91 updates/sec	perplexity=12.018128
+[2020-04-07:16:11:33:INFO:sockeye.training:__call__] Epoch[7] Batch [15400]	Speed: 363.17 samples/sec 10299.17 tokens/sec 7.74 updates/sec	perplexity=11.991624
+[2020-04-07:16:11:39:INFO:sockeye.training:__call__] Epoch[7] Batch [15450]	Speed: 325.27 samples/sec 10371.99 tokens/sec 7.87 updates/sec	perplexity=11.976692
+[2020-04-07:16:11:45:INFO:sockeye.training:__call__] Epoch[7] Batch [15500]	Speed: 326.54 samples/sec 10429.15 tokens/sec 7.93 updates/sec	perplexity=11.960077
+[2020-04-07:16:11:52:INFO:sockeye.training:__call__] Epoch[7] Batch [15550]	Speed: 306.34 samples/sec 10384.17 tokens/sec 7.83 updates/sec	perplexity=11.950278
+[2020-04-07:16:11:58:INFO:sockeye.training:__call__] Epoch[7] Batch [15600]	Speed: 318.10 samples/sec 10419.79 tokens/sec 8.00 updates/sec	perplexity=11.940901
+[2020-04-07:16:12:04:INFO:sockeye.training:__call__] Epoch[7] Batch [15650]	Speed: 324.88 samples/sec 10470.78 tokens/sec 7.91 updates/sec	perplexity=11.929498
+[2020-04-07:16:12:11:INFO:sockeye.training:__call__] Epoch[7] Batch [15700]	Speed: 297.02 samples/sec 10330.87 tokens/sec 7.81 updates/sec	perplexity=11.915529
+[2020-04-07:16:12:17:INFO:sockeye.training:__call__] Epoch[7] Batch [15750]	Speed: 348.42 samples/sec 10251.89 tokens/sec 7.72 updates/sec	perplexity=11.894551
+[2020-04-07:16:12:24:INFO:sockeye.training:__call__] Epoch[7] Batch [15800]	Speed: 311.21 samples/sec 10441.87 tokens/sec 7.93 updates/sec	perplexity=11.885662
+[2020-04-07:16:12:30:INFO:sockeye.training:__call__] Epoch[7] Batch [15850]	Speed: 321.68 samples/sec 10423.77 tokens/sec 8.02 updates/sec	perplexity=11.871088
+[2020-04-07:16:12:36:INFO:sockeye.training:__call__] Epoch[7] Batch [15900]	Speed: 335.39 samples/sec 10418.50 tokens/sec 7.83 updates/sec	perplexity=11.859619
+[2020-04-07:16:12:43:INFO:sockeye.training:__call__] Epoch[7] Batch [15950]	Speed: 324.83 samples/sec 10455.10 tokens/sec 7.86 updates/sec	perplexity=11.846943
+[2020-04-07:16:12:49:INFO:sockeye.training:__call__] Epoch[7] Batch [16000]	Speed: 319.70 samples/sec 10195.53 tokens/sec 7.83 updates/sec	perplexity=11.834396
+[2020-04-07:16:12:49:INFO:root:save_params_to_file] Saved params to "/content/chvrus_parent_model/params.00004"
+[2020-04-07:16:12:49:INFO:sockeye.training:fit] Checkpoint [4]	Updates=16000 Epoch=7 Samples=660428 Time-cost=540.464 Updates/sec=7.401
+[2020-04-07:16:12:49:INFO:sockeye.training:fit] Checkpoint [4]	Train-perplexity=11.834396
+[2020-04-07:16:12:52:INFO:sockeye.training:fit] Checkpoint [4]	Validation-perplexity=17.309364
+[2020-04-07:16:12:52:INFO:sockeye.training:collect_results] Decoder-3 finished: {'bleu-val': 0.12821277033390682, 'chrf-val': 0.3670077072358222, 'rouge1-val': 0.3396139586729667, 'rouge2-val': 0.17504106734731256, 'rougel-val': 0.29437736014693405, 'length-ratio-mse': 0.9621619379296087, 'avg-sec-per-sent-val': 0.17112635183334352, 'decode-walltime-val': 85.56317591667175}
+[2020-04-07:16:12:52:INFO:sockeye.training:start_decoder] Starting process: Decoder-4
+[2020-04-07:16:12:54:INFO:sockeye.training:fit] Validation-bleu improved to 0.128213 (delta=0.034531).
+[2020-04-07:16:12:57:INFO:sockeye.utils:log_gpu_memory_usage] GPU 0: 2490/7611 MB (32.72%)
+[2020-04-07:16:13:09:INFO:sockeye.training:__call__] Epoch[7] Batch [16050]	Speed: 92.89 samples/sec 3274.03 tokens/sec 2.52 updates/sec	perplexity=11.341046
+[2020-04-07:16:13:22:INFO:sockeye.training:__call__] Epoch[7] Batch [16100]	Speed: 159.56 samples/sec 4908.28 tokens/sec 3.68 updates/sec	perplexity=11.187085
+[2020-04-07:16:13:33:INFO:sockeye.training:__call__] Epoch[7] Batch [16150]	Speed: 217.35 samples/sec 6490.21 tokens/sec 4.89 updates/sec	perplexity=11.095916
+[2020-04-07:16:13:42:INFO:sockeye.training:__call__] Epoch[7] Batch [16200]	Speed: 205.91 samples/sec 6686.07 tokens/sec 5.11 updates/sec	perplexity=11.079653
+[2020-04-07:16:13:52:INFO:sockeye.training:__call__] Epoch[7] Batch [16250]	Speed: 179.86 samples/sec 6647.92 tokens/sec 5.11 updates/sec	perplexity=11.203423
+[2020-04-07:16:14:03:INFO:sockeye.training:__call__] Epoch[7] Batch [16300]	Speed: 199.49 samples/sec 6405.63 tokens/sec 4.88 updates/sec	perplexity=11.150841
+[2020-04-07:16:14:13:INFO:sockeye.training:__call__] Epoch[7] Batch [16350]	Speed: 181.18 samples/sec 6336.40 tokens/sec 4.89 updates/sec	perplexity=11.220138
+[2020-04-07:16:14:22:INFO:sockeye.training:__call__] Epoch[7] Batch [16400]	Speed: 228.06 samples/sec 7122.49 tokens/sec 5.46 updates/sec	perplexity=11.211752
+[2020-04-07:16:14:28:INFO:sockeye.training:__call__] Epoch[7] Batch [16450]	Speed: 368.93 samples/sec 10435.32 tokens/sec 7.87 updates/sec	perplexity=11.121959
+[2020-04-07:16:14:35:INFO:sockeye.training:__call__] Epoch[8] Batch [16500]	Speed: 300.82 samples/sec 10267.89 tokens/sec 7.93 updates/sec	perplexity=10.846940
+[2020-04-07:16:14:41:INFO:sockeye.training:__call__] Epoch[8] Batch [16550]	Speed: 312.68 samples/sec 10236.99 tokens/sec 7.84 updates/sec	perplexity=10.617240
+[2020-04-07:16:14:47:INFO:sockeye.training:__call__] Epoch[8] Batch [16600]	Speed: 309.44 samples/sec 10393.12 tokens/sec 7.96 updates/sec	perplexity=10.449618
+[2020-04-07:16:14:54:INFO:sockeye.training:__call__] Epoch[8] Batch [16650]	Speed: 363.09 samples/sec 10394.61 tokens/sec 7.80 updates/sec	perplexity=10.230913
+[2020-04-07:16:15:00:INFO:sockeye.training:__call__] Epoch[8] Batch [16700]	Speed: 289.39 samples/sec 10368.89 tokens/sec 7.93 updates/sec	perplexity=10.136204
+[2020-04-07:16:15:06:INFO:sockeye.training:__call__] Epoch[8] Batch [16750]	Speed: 350.81 samples/sec 10366.61 tokens/sec 7.73 updates/sec	perplexity=10.020937
+[2020-04-07:16:15:13:INFO:sockeye.training:__call__] Epoch[8] Batch [16800]	Speed: 276.52 samples/sec 10427.98 tokens/sec 7.97 updates/sec	perplexity=9.962244
+[2020-04-07:16:15:19:INFO:sockeye.training:__call__] Epoch[8] Batch [16850]	Speed: 333.96 samples/sec 10385.76 tokens/sec 7.77 updates/sec	perplexity=9.878246
+[2020-04-07:16:15:25:INFO:sockeye.training:__call__] Epoch[8] Batch [16900]	Speed: 352.25 samples/sec 10426.33 tokens/sec 7.93 updates/sec	perplexity=9.817533
+[2020-04-07:16:15:32:INFO:sockeye.training:__call__] Epoch[8] Batch [16950]	Speed: 305.01 samples/sec 10438.34 tokens/sec 8.03 updates/sec	perplexity=9.781336
+[2020-04-07:16:15:38:INFO:sockeye.training:__call__] Epoch[8] Batch [17000]	Speed: 342.99 samples/sec 10383.61 tokens/sec 7.82 updates/sec	perplexity=9.730173
+[2020-04-07:16:15:44:INFO:sockeye.training:__call__] Epoch[8] Batch [17050]	Speed: 306.87 samples/sec 10356.20 tokens/sec 7.91 updates/sec	perplexity=9.680453
+[2020-04-07:16:15:51:INFO:sockeye.training:__call__] Epoch[8] Batch [17100]	Speed: 313.52 samples/sec 10295.15 tokens/sec 7.90 updates/sec	perplexity=9.653965
+[2020-04-07:16:15:57:INFO:sockeye.training:__call__] Epoch[8] Batch [17150]	Speed: 315.75 samples/sec 10422.67 tokens/sec 7.96 updates/sec	perplexity=9.621726
+[2020-04-07:16:16:03:INFO:sockeye.training:__call__] Epoch[8] Batch [17200]	Speed: 303.56 samples/sec 10334.82 tokens/sec 7.96 updates/sec	perplexity=9.598053
+[2020-04-07:16:16:10:INFO:sockeye.training:__call__] Epoch[8] Batch [17250]	Speed: 377.95 samples/sec 10428.48 tokens/sec 7.82 updates/sec	perplexity=9.565499
+[2020-04-07:16:16:16:INFO:sockeye.training:__call__] Epoch[8] Batch [17300]	Speed: 346.30 samples/sec 10396.89 tokens/sec 7.95 updates/sec	perplexity=9.532663
+[2020-04-07:16:16:22:INFO:sockeye.training:__call__] Epoch[8] Batch [17350]	Speed: 365.68 samples/sec 10371.91 tokens/sec 7.77 updates/sec	perplexity=9.502892
+[2020-04-07:16:16:29:INFO:sockeye.training:__call__] Epoch[8] Batch [17400]	Speed: 338.49 samples/sec 10442.67 tokens/sec 8.00 updates/sec	perplexity=9.496425
+[2020-04-07:16:16:35:INFO:sockeye.training:__call__] Epoch[8] Batch [17450]	Speed: 349.69 samples/sec 10356.92 tokens/sec 7.88 updates/sec	perplexity=9.476320
+[2020-04-07:16:16:41:INFO:sockeye.training:__call__] Epoch[8] Batch [17500]	Speed: 365.67 samples/sec 10378.06 tokens/sec 7.89 updates/sec	perplexity=9.461587
+[2020-04-07:16:16:48:INFO:sockeye.training:__call__] Epoch[8] Batch [17550]	Speed: 346.94 samples/sec 10409.78 tokens/sec 7.92 updates/sec	perplexity=9.438707
+[2020-04-07:16:16:54:INFO:sockeye.training:__call__] Epoch[8] Batch [17600]	Speed: 298.50 samples/sec 10352.93 tokens/sec 7.93 updates/sec	perplexity=9.451484
+[2020-04-07:16:17:00:INFO:sockeye.training:__call__] Epoch[8] Batch [17650]	Speed: 350.28 samples/sec 10464.09 tokens/sec 7.92 updates/sec	perplexity=9.437810
+[2020-04-07:16:17:07:INFO:sockeye.training:__call__] Epoch[8] Batch [17700]	Speed: 321.05 samples/sec 10357.42 tokens/sec 7.94 updates/sec	perplexity=9.443493
+[2020-04-07:16:17:13:INFO:sockeye.training:__call__] Epoch[8] Batch [17750]	Speed: 338.36 samples/sec 10332.26 tokens/sec 7.89 updates/sec	perplexity=9.448384
+[2020-04-07:16:17:19:INFO:sockeye.training:__call__] Epoch[8] Batch [17800]	Speed: 324.60 samples/sec 10482.71 tokens/sec 8.04 updates/sec	perplexity=9.450560
+[2020-04-07:16:17:25:INFO:sockeye.training:__call__] Epoch[8] Batch [17850]	Speed: 299.29 samples/sec 10433.69 tokens/sec 7.99 updates/sec	perplexity=9.451507
+[2020-04-07:16:17:32:INFO:sockeye.training:__call__] Epoch[8] Batch [17900]	Speed: 347.83 samples/sec 10295.22 tokens/sec 7.68 updates/sec	perplexity=9.451646
+[2020-04-07:16:17:38:INFO:sockeye.training:__call__] Epoch[8] Batch [17950]	Speed: 333.46 samples/sec 10286.80 tokens/sec 7.73 updates/sec	perplexity=9.443175
+[2020-04-07:16:17:45:INFO:sockeye.training:__call__] Epoch[8] Batch [18000]	Speed: 339.64 samples/sec 10322.98 tokens/sec 7.88 updates/sec	perplexity=9.448520
+[2020-04-07:16:17:51:INFO:sockeye.training:__call__] Epoch[8] Batch [18050]	Speed: 297.42 samples/sec 10412.20 tokens/sec 7.93 updates/sec	perplexity=9.451940
+[2020-04-07:16:17:57:INFO:sockeye.training:__call__] Epoch[8] Batch [18100]	Speed: 306.24 samples/sec 10445.91 tokens/sec 8.00 updates/sec	perplexity=9.451527
+[2020-04-07:16:18:04:INFO:sockeye.training:__call__] Epoch[8] Batch [18150]	Speed: 305.54 samples/sec 10305.41 tokens/sec 7.91 updates/sec	perplexity=9.452733
+[2020-04-07:16:18:10:INFO:sockeye.training:__call__] Epoch[8] Batch [18200]	Speed: 266.38 samples/sec 10239.26 tokens/sec 7.82 updates/sec	perplexity=9.464229
+[2020-04-07:16:18:16:INFO:sockeye.training:__call__] Epoch[8] Batch [18250]	Speed: 323.23 samples/sec 10404.75 tokens/sec 7.93 updates/sec	perplexity=9.463951
+[2020-04-07:16:18:23:INFO:sockeye.training:__call__] Epoch[8] Batch [18300]	Speed: 296.80 samples/sec 10356.33 tokens/sec 7.94 updates/sec	perplexity=9.479869
+[2020-04-07:16:18:29:INFO:sockeye.training:__call__] Epoch[8] Batch [18350]	Speed: 370.80 samples/sec 10331.70 tokens/sec 7.81 updates/sec	perplexity=9.478835
+[2020-04-07:16:18:35:INFO:sockeye.training:__call__] Epoch[8] Batch [18400]	Speed: 336.13 samples/sec 10292.47 tokens/sec 7.78 updates/sec	perplexity=9.479225
+[2020-04-07:16:18:42:INFO:sockeye.training:__call__] Epoch[8] Batch [18450]	Speed: 305.08 samples/sec 10397.16 tokens/sec 7.86 updates/sec	perplexity=9.491039
+[2020-04-07:16:18:48:INFO:sockeye.training:__call__] Epoch[8] Batch [18500]	Speed: 315.98 samples/sec 10338.02 tokens/sec 7.89 updates/sec	perplexity=9.502203
+[2020-04-07:16:18:54:INFO:sockeye.training:__call__] Epoch[9] Batch [18550]	Speed: 256.69 samples/sec 10296.12 tokens/sec 7.94 updates/sec	perplexity=9.477272
+[2020-04-07:16:19:01:INFO:sockeye.training:__call__] Epoch[9] Batch [18600]	Speed: 346.83 samples/sec 10375.33 tokens/sec 7.79 updates/sec	perplexity=9.421476
+[2020-04-07:16:19:07:INFO:sockeye.training:__call__] Epoch[9] Batch [18650]	Speed: 294.95 samples/sec 10330.49 tokens/sec 8.00 updates/sec	perplexity=9.383746
+[2020-04-07:16:19:13:INFO:sockeye.training:__call__] Epoch[9] Batch [18700]	Speed: 323.31 samples/sec 10446.64 tokens/sec 8.02 updates/sec	perplexity=9.342039
+[2020-04-07:16:19:20:INFO:sockeye.training:__call__] Epoch[9] Batch [18750]	Speed: 321.05 samples/sec 10436.93 tokens/sec 7.94 updates/sec	perplexity=9.303789
+[2020-04-07:16:19:26:INFO:sockeye.training:__call__] Epoch[9] Batch [18800]	Speed: 294.22 samples/sec 10497.96 tokens/sec 8.11 updates/sec	perplexity=9.267666
+[2020-04-07:16:19:32:INFO:sockeye.training:__call__] Epoch[9] Batch [18850]	Speed: 321.53 samples/sec 10325.25 tokens/sec 7.81 updates/sec	perplexity=9.232804
+[2020-04-07:16:19:38:INFO:sockeye.training:__call__] Epoch[9] Batch [18900]	Speed: 330.97 samples/sec 10313.20 tokens/sec 7.90 updates/sec	perplexity=9.198325
+[2020-04-07:16:19:45:INFO:sockeye.training:__call__] Epoch[9] Batch [18950]	Speed: 321.32 samples/sec 10298.69 tokens/sec 7.86 updates/sec	perplexity=9.170082
+[2020-04-07:16:19:51:INFO:sockeye.training:__call__] Epoch[9] Batch [19000]	Speed: 280.32 samples/sec 10364.56 tokens/sec 8.06 updates/sec	perplexity=9.146114
+[2020-04-07:16:19:57:INFO:sockeye.training:__call__] Epoch[9] Batch [19050]	Speed: 320.03 samples/sec 10443.31 tokens/sec 7.92 updates/sec	perplexity=9.118804
+[2020-04-07:16:20:04:INFO:sockeye.training:__call__] Epoch[9] Batch [19100]	Speed: 356.30 samples/sec 10465.20 tokens/sec 7.88 updates/sec	perplexity=9.091779
+[2020-04-07:16:20:10:INFO:sockeye.training:__call__] Epoch[9] Batch [19150]	Speed: 333.66 samples/sec 10314.18 tokens/sec 7.81 updates/sec	perplexity=9.069980
+[2020-04-07:16:20:16:INFO:sockeye.training:__call__] Epoch[9] Batch [19200]	Speed: 285.32 samples/sec 10342.70 tokens/sec 7.90 updates/sec	perplexity=9.049128
+[2020-04-07:16:20:23:INFO:sockeye.training:__call__] Epoch[9] Batch [19250]	Speed: 331.59 samples/sec 10423.98 tokens/sec 7.86 updates/sec	perplexity=9.033303
+[2020-04-07:16:20:29:INFO:sockeye.training:__call__] Epoch[9] Batch [19300]	Speed: 367.16 samples/sec 10287.89 tokens/sec 7.80 updates/sec	perplexity=9.009790
+[2020-04-07:16:20:36:INFO:sockeye.training:__call__] Epoch[9] Batch [19350]	Speed: 292.24 samples/sec 10338.33 tokens/sec 7.86 updates/sec	perplexity=8.999414
+[2020-04-07:16:20:42:INFO:sockeye.training:__call__] Epoch[9] Batch [19400]	Speed: 328.91 samples/sec 10265.83 tokens/sec 7.97 updates/sec	perplexity=8.985544
+[2020-04-07:16:20:48:INFO:sockeye.training:__call__] Epoch[9] Batch [19450]	Speed: 335.91 samples/sec 10387.41 tokens/sec 7.91 updates/sec	perplexity=8.972333
+[2020-04-07:16:20:54:INFO:sockeye.training:__call__] Epoch[9] Batch [19500]	Speed: 314.11 samples/sec 10423.99 tokens/sec 7.92 updates/sec	perplexity=8.958045
+[2020-04-07:16:21:01:INFO:sockeye.training:__call__] Epoch[9] Batch [19550]	Speed: 295.69 samples/sec 10354.06 tokens/sec 7.99 updates/sec	perplexity=8.951306
+[2020-04-07:16:21:07:INFO:sockeye.training:__call__] Epoch[9] Batch [19600]	Speed: 314.81 samples/sec 10395.01 tokens/sec 7.99 updates/sec	perplexity=8.941400
+[2020-04-07:16:21:13:INFO:sockeye.training:__call__] Epoch[9] Batch [19650]	Speed: 286.81 samples/sec 10281.63 tokens/sec 7.88 updates/sec	perplexity=8.935552
+[2020-04-07:16:21:20:INFO:sockeye.training:__call__] Epoch[9] Batch [19700]	Speed: 329.84 samples/sec 10421.12 tokens/sec 7.94 updates/sec	perplexity=8.925530
+[2020-04-07:16:21:26:INFO:sockeye.training:__call__] Epoch[9] Batch [19750]	Speed: 304.44 samples/sec 10401.68 tokens/sec 8.01 updates/sec	perplexity=8.919215
+[2020-04-07:16:21:32:INFO:sockeye.training:__call__] Epoch[9] Batch [19800]	Speed: 318.24 samples/sec 10343.82 tokens/sec 7.83 updates/sec	perplexity=8.912286
+[2020-04-07:16:21:39:INFO:sockeye.training:__call__] Epoch[9] Batch [19850]	Speed: 308.07 samples/sec 10433.74 tokens/sec 7.92 updates/sec	perplexity=8.909424
+[2020-04-07:16:21:45:INFO:sockeye.training:__call__] Epoch[9] Batch [19900]	Speed: 305.40 samples/sec 10426.92 tokens/sec 7.92 updates/sec	perplexity=8.903106
+[2020-04-07:16:21:51:INFO:sockeye.training:__call__] Epoch[9] Batch [19950]	Speed: 357.15 samples/sec 10377.82 tokens/sec 7.79 updates/sec	perplexity=8.894890
+[2020-04-07:16:21:58:INFO:sockeye.training:__call__] Epoch[9] Batch [20000]	Speed: 365.61 samples/sec 10285.41 tokens/sec 7.87 updates/sec	perplexity=8.883921
+[2020-04-07:16:21:58:INFO:root:save_params_to_file] Saved params to "/content/chvrus_parent_model/params.00005"
+[2020-04-07:16:21:58:INFO:sockeye.training:fit] Checkpoint [5]	Updates=20000 Epoch=9 Samples=823672 Time-cost=539.055 Updates/sec=7.420
+[2020-04-07:16:21:58:INFO:sockeye.training:fit] Checkpoint [5]	Train-perplexity=8.883921
+[2020-04-07:16:22:01:INFO:sockeye.training:fit] Checkpoint [5]	Validation-perplexity=16.157011
+[2020-04-07:16:22:01:INFO:sockeye.training:collect_results] Decoder-4 finished: {'bleu-val': 0.14442144097975576, 'chrf-val': 0.37931162624397424, 'rouge1-val': 0.35375469918756663, 'rouge2-val': 0.18738177998232683, 'rougel-val': 0.31259220640031243, 'length-ratio-mse': 0.9421484782588665, 'avg-sec-per-sent-val': 0.1610788588523865, 'decode-walltime-val': 80.53942942619324}
+[2020-04-07:16:22:01:INFO:sockeye.training:start_decoder] Starting process: Decoder-5
+[2020-04-07:16:22:03:INFO:sockeye.training:fit] Validation-bleu improved to 0.144421 (delta=0.016209).
+[2020-04-07:16:22:06:INFO:sockeye.utils:log_gpu_memory_usage] GPU 0: 2492/7611 MB (32.74%)
+[2020-04-07:16:22:18:INFO:sockeye.training:__call__] Epoch[9] Batch [20050]	Speed: 110.50 samples/sec 3315.93 tokens/sec 2.51 updates/sec	perplexity=8.292072
+[2020-04-07:16:22:30:INFO:sockeye.training:__call__] Epoch[9] Batch [20100]	Speed: 175.64 samples/sec 5224.23 tokens/sec 3.94 updates/sec	perplexity=8.317745
+[2020-04-07:16:22:40:INFO:sockeye.training:__call__] Epoch[9] Batch [20150]	Speed: 217.55 samples/sec 6702.95 tokens/sec 5.10 updates/sec	perplexity=8.420775
+[2020-04-07:16:22:50:INFO:sockeye.training:__call__] Epoch[9] Batch [20200]	Speed: 240.18 samples/sec 6813.29 tokens/sec 5.06 updates/sec	perplexity=8.328126
+[2020-04-07:16:23:00:INFO:sockeye.training:__call__] Epoch[9] Batch [20250]	Speed: 206.92 samples/sec 6769.77 tokens/sec 5.16 updates/sec	perplexity=8.403008
+[2020-04-07:16:23:10:INFO:sockeye.training:__call__] Epoch[9] Batch [20300]	Speed: 226.91 samples/sec 6335.80 tokens/sec 4.73 updates/sec	perplexity=8.391313
+[2020-04-07:16:23:21:INFO:sockeye.training:__call__] Epoch[9] Batch [20350]	Speed: 202.13 samples/sec 6296.59 tokens/sec 4.79 updates/sec	perplexity=8.469350
+[2020-04-07:16:23:30:INFO:sockeye.training:__call__] Epoch[9] Batch [20400]	Speed: 226.28 samples/sec 7206.97 tokens/sec 5.52 updates/sec	perplexity=8.469127
+[2020-04-07:16:23:36:INFO:sockeye.training:__call__] Epoch[9] Batch [20450]	Speed: 358.70 samples/sec 10413.23 tokens/sec 7.87 updates/sec	perplexity=8.466592
+[2020-04-07:16:23:42:INFO:sockeye.training:__call__] Epoch[9] Batch [20500]	Speed: 312.55 samples/sec 10223.82 tokens/sec 7.82 updates/sec	perplexity=8.499629
+[2020-04-07:16:23:49:INFO:sockeye.training:__call__] Epoch[9] Batch [20550]	Speed: 348.36 samples/sec 10387.96 tokens/sec 7.86 updates/sec	perplexity=8.504807
+[2020-04-07:16:23:55:INFO:sockeye.training:__call__] Epoch[10] Batch [20600]	Speed: 330.89 samples/sec 10270.07 tokens/sec 7.73 updates/sec	perplexity=8.386372
+[2020-04-07:16:24:02:INFO:sockeye.training:__call__] Epoch[10] Batch [20650]	Speed: 354.33 samples/sec 10261.49 tokens/sec 7.74 updates/sec	perplexity=8.195739
+[2020-04-07:16:24:08:INFO:sockeye.training:__call__] Epoch[10] Batch [20700]	Speed: 324.56 samples/sec 10259.65 tokens/sec 7.87 updates/sec	perplexity=8.075595
+[2020-04-07:16:24:14:INFO:sockeye.training:__call__] Epoch[10] Batch [20750]	Speed: 326.82 samples/sec 10382.38 tokens/sec 7.87 updates/sec	perplexity=7.974873
+[2020-04-07:16:24:21:INFO:sockeye.training:__call__] Epoch[10] Batch [20800]	Speed: 360.84 samples/sec 10564.83 tokens/sec 7.94 updates/sec	perplexity=7.866125
+[2020-04-07:16:24:27:INFO:sockeye.training:__call__] Epoch[10] Batch [20850]	Speed: 289.62 samples/sec 10437.97 tokens/sec 8.01 updates/sec	perplexity=7.802727
+[2020-04-07:16:24:33:INFO:sockeye.training:__call__] Epoch[10] Batch [20900]	Speed: 335.11 samples/sec 10470.16 tokens/sec 7.96 updates/sec	perplexity=7.727989
+[2020-04-07:16:24:40:INFO:sockeye.training:__call__] Epoch[10] Batch [20950]	Speed: 333.61 samples/sec 10321.75 tokens/sec 7.80 updates/sec	perplexity=7.658020
+[2020-04-07:16:24:46:INFO:sockeye.training:__call__] Epoch[10] Batch [21000]	Speed: 292.57 samples/sec 10343.76 tokens/sec 7.99 updates/sec	perplexity=7.624417
+[2020-04-07:16:24:52:INFO:sockeye.training:__call__] Epoch[10] Batch [21050]	Speed: 364.97 samples/sec 10357.68 tokens/sec 7.93 updates/sec	perplexity=7.571796
+[2020-04-07:16:24:59:INFO:sockeye.training:__call__] Epoch[10] Batch [21100]	Speed: 333.80 samples/sec 10408.38 tokens/sec 7.92 updates/sec	perplexity=7.537020
+[2020-04-07:16:25:05:INFO:sockeye.training:__call__] Epoch[10] Batch [21150]	Speed: 318.16 samples/sec 10357.13 tokens/sec 7.90 updates/sec	perplexity=7.511292
+[2020-04-07:16:25:11:INFO:sockeye.training:__call__] Epoch[10] Batch [21200]	Speed: 402.69 samples/sec 10329.34 tokens/sec 7.69 updates/sec	perplexity=7.473563
+[2020-04-07:16:25:18:INFO:sockeye.training:__call__] Epoch[10] Batch [21250]	Speed: 335.41 samples/sec 10314.77 tokens/sec 7.79 updates/sec	perplexity=7.459449
+[2020-04-07:16:25:24:INFO:sockeye.training:__call__] Epoch[10] Batch [21300]	Speed: 302.13 samples/sec 10338.49 tokens/sec 7.98 updates/sec	perplexity=7.460953
+[2020-04-07:16:25:30:INFO:sockeye.training:__call__] Epoch[10] Batch [21350]	Speed: 354.69 samples/sec 10339.15 tokens/sec 7.81 updates/sec	perplexity=7.442819
+[2020-04-07:16:25:37:INFO:sockeye.training:__call__] Epoch[10] Batch [21400]	Speed: 348.37 samples/sec 10447.94 tokens/sec 8.00 updates/sec	perplexity=7.428104
+[2020-04-07:16:25:43:INFO:sockeye.training:__call__] Epoch[10] Batch [21450]	Speed: 338.30 samples/sec 10497.33 tokens/sec 7.99 updates/sec	perplexity=7.412605
+[2020-04-07:16:25:49:INFO:sockeye.training:__call__] Epoch[10] Batch [21500]	Speed: 286.56 samples/sec 10283.14 tokens/sec 7.82 updates/sec	perplexity=7.406689
+[2020-04-07:16:25:56:INFO:sockeye.training:__call__] Epoch[10] Batch [21550]	Speed: 326.70 samples/sec 10316.16 tokens/sec 7.90 updates/sec	perplexity=7.395791
+[2020-04-07:16:26:02:INFO:sockeye.training:__call__] Epoch[10] Batch [21600]	Speed: 324.24 samples/sec 10457.91 tokens/sec 7.94 updates/sec	perplexity=7.387552
+[2020-04-07:16:26:08:INFO:sockeye.training:__call__] Epoch[10] Batch [21650]	Speed: 315.89 samples/sec 10455.37 tokens/sec 7.96 updates/sec	perplexity=7.385321
+[2020-04-07:16:26:14:INFO:sockeye.training:__call__] Epoch[10] Batch [21700]	Speed: 295.90 samples/sec 10514.50 tokens/sec 8.07 updates/sec	perplexity=7.381654
+[2020-04-07:16:26:21:INFO:sockeye.training:__call__] Epoch[10] Batch [21750]	Speed: 325.98 samples/sec 10403.44 tokens/sec 8.04 updates/sec	perplexity=7.375998
+[2020-04-07:16:26:27:INFO:sockeye.training:__call__] Epoch[10] Batch [21800]	Speed: 344.05 samples/sec 10362.91 tokens/sec 7.96 updates/sec	perplexity=7.373558
+[2020-04-07:16:26:33:INFO:sockeye.training:__call__] Epoch[10] Batch [21850]	Speed: 289.53 samples/sec 10430.02 tokens/sec 7.97 updates/sec	perplexity=7.381651
+[2020-04-07:16:26:40:INFO:sockeye.training:__call__] Epoch[10] Batch [21900]	Speed: 338.56 samples/sec 10320.74 tokens/sec 7.80 updates/sec	perplexity=7.384369
+[2020-04-07:16:26:46:INFO:sockeye.training:__call__] Epoch[10] Batch [21950]	Speed: 324.94 samples/sec 10464.20 tokens/sec 7.96 updates/sec	perplexity=7.385140
+[2020-04-07:16:26:52:INFO:sockeye.training:__call__] Epoch[10] Batch [22000]	Speed: 299.73 samples/sec 10346.15 tokens/sec 8.02 updates/sec	perplexity=7.392817
+[2020-04-07:16:26:59:INFO:sockeye.training:__call__] Epoch[10] Batch [22050]	Speed: 341.26 samples/sec 10301.22 tokens/sec 7.72 updates/sec	perplexity=7.391000
+[2020-04-07:16:27:05:INFO:sockeye.training:__call__] Epoch[10] Batch [22100]	Speed: 344.22 samples/sec 10425.34 tokens/sec 7.85 updates/sec	perplexity=7.389863
+[2020-04-07:16:27:11:INFO:sockeye.training:__call__] Epoch[10] Batch [22150]	Speed: 301.77 samples/sec 10395.04 tokens/sec 7.90 updates/sec	perplexity=7.400305
+[2020-04-07:16:27:18:INFO:sockeye.training:__call__] Epoch[10] Batch [22200]	Speed: 339.08 samples/sec 10411.48 tokens/sec 7.86 updates/sec	perplexity=7.401291
+[2020-04-07:16:27:24:INFO:sockeye.training:__call__] Epoch[10] Batch [22250]	Speed: 280.46 samples/sec 10434.04 tokens/sec 7.99 updates/sec	perplexity=7.412441
